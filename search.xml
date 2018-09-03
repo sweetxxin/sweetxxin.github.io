@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[http模拟登陆]]></title>
+    <url>%2F2018%2F09%2F03%2Fhttp%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86%2F</url>
+    <content type="text"><![CDATA[使用java作为后台语言，实现带验证码的模拟登陆。简单而言，过程分两步 一、获取验证码图片通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。 二、模拟登陆通过抓包工具如fiddler等，或者直接在浏览器控制台拿到模拟登陆所需要的参数的键值，后台拼接参数后向对应的路径发送请求，一般是post请求，就能正常模拟登陆成功了。]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[First]]></title>
     <url>%2F2018%2F08%2F25%2FFirst%2F</url>
     <content type="text"><![CDATA[这是我的第一个博客，喜欢鼓捣很多东西]]></content>
