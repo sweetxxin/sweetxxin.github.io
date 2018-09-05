@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[谈社团招新]]></title>
+    <url>%2F2018%2F09%2F06%2F%E8%B0%88%E7%A4%BE%E5%9B%A2%E6%8B%9B%E6%96%B0%2F</url>
+    <content type="text"><![CDATA[1 自从开学后，就开始准备招新事宜，我留任校团委网络中心，已经大三的我，不论当时留下来的原因是什么，如今尘埃落定，居其位,思其责，做其事。我其实很想逃避这些东西，但如今我逃避不了了。谈起招新，谈起扫楼，谈起跟其他组织竞争，可能有人会在背后说闲话，但我只能说，我只是在尽力做我能做的事情，没有恶意，我只是提供了一个选择，一个通往我部门的选择而已。但似乎，从其他人眼中，我所做的似有不妥。可能毕竟是竞争，可能我做的还不够好。 2我渐渐觉得社团是一个很迷的地方。如果一个人，坚持了一开始的想法，那么可能他就是体验社团一年，尝尝新鲜感，留下美好的回忆，然后大二离场。有的人，开始很融入这个社团，然后开始改变自己，改变想法，成功地走上了一条新的路，或者说被社团改造。我不能说这两种情况哪一个比较好，毕竟未来谁能预料地到。社团这条路，一开始，一群人挤着抢着上车，司机也各显神通地邀请，然而讽刺的是，到最后，幸运的人成功的进入了社团，可怜的人，从被抢来抢去，到被抛来抛去，最后再也鼓不起勇气去报其他。而更讽刺的是，某些幸运的人没有做出他应该做到的表现，而当时如果招入的是其他人，结局也又未可知。这时，我们往往会说，这就是命，或者说，缘分使然，感怀亦是徒然。 3不知为何，我开始会想很多东西，考虑很多东西，我开始担心自己做的不够好，我甚至害怕带不起他们。我开始为这些事操心，明明，我应该大胆放手，让他们成长。我似乎很自卑，但在一部分人眼中，我好像也很“完美”。我感觉我变了，我开始想写一些感受，我的话开始变的很多。 4我的大学只选择了一个社团，可能我是无法体会到那些报了多个社团的人的感受，我甚至都无法去评论，因为那样显得很片面。而有的人也是只选择了一个社团，但是他却也局限于只了解这一社团，似有井底之蛙之嫌。谈到社团，却又不得不提归属感一词，有的人愿意为部门付出很多，而且无怨无悔，甚至乐此不疲，而有的人唯恐避之不及。有的人只想得到什么，不打算去付出。我不知道每一个他们是怎么想的，我也不知道他们是否认真考虑过它的意义。或许是我的成长环境决定了我的所思所想，在外人看来觉得完全没有必要去做某些我认为才是真正该做该学的事。但想回来，我应该是个利己主义者，但为何偏偏去替他人担忧他的未来。是因为他们过的比我洒脱，我需要自我安慰自己？我想有部分原因是这样的。可是明明，我对自己的未来都没能把控好，但何苦去评判他人。这一点，我不知道为什么，或者说，我还没能想到这一层。 5走走停停，大学就这么过去了，可能毕业后的自己，回想如今，又是千思百绪，又或者嘲笑自己。甚至于说，多年之后，我才记起，我在大三的招新工作里，写了这么一篇文章。如果现在的我，无意间翻到了初中时的我写的东西，多么稚嫩，却也很美好。]]></content>
+      <categories>
+        <category>我说</category>
+      </categories>
+      <tags>
+        <tag>生活闲谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[http模拟登陆]]></title>
     <url>%2F2018%2F09%2F03%2Fhttp%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86%2F</url>
     <content type="text"><![CDATA[使用java作为后台语言，实现带验证码的模拟登陆。采用springboot快速开发。简单而言，过程分两步 一、获取验证码图片通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。 如下获取验证码图片函数 private void getImg(HttpServletResponse response){ HttpGet get = new HttpGet(&quot;验证码的url&quot;); try { CloseableHttpResponse res = client.execute(get); HttpEntity entity = res.getEntity(); OutputStream out = response.getOutputStream(); byte[] buffer = new byte[1024]; int end; while ((end=entity.getContent().read(buffer))!=-1){ out.write(buffer); } out.close(); response.setContentType(&quot;image/jpeg&quot;);//设置相应类型,告诉浏览器输出的内容为图片 response.setHeader(&quot;Pragma&quot;, &quot;No-cache&quot;);//设置响应头信息，告诉浏览器不要缓存此内容 response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;); response.setDateHeader(&quot;Expire&quot;, 0); // 将内存中的图片通过流动形式输出到客户端 } catch (IOException e) { e.printStackTrace(); } 二、模拟登陆通过抓包工具如fiddler等，或者直接在浏览器控制台拿到模拟登陆所需要的参数的键值，后台拼接参数后向对应的路径发送请求，一般是post请求，就能正常模拟登陆成功了。 public void doLogin(@RequestParam(&quot;stuid&quot;)String stuid, @RequestParam(&quot;password&quot;)String password, @RequestParam(&quot;code&quot;) String code, HttpServletResponse response2) throws IOException { HttpPost post = new HttpPost(&quot;登陆的url&quot;); //装填参数 List&lt;NameValuePair&gt; nvps = new ArrayList&lt;NameValuePair&gt;(); nvps.add(new BasicNameValuePair(&quot;参数1&quot;,&quot;值1&quot;)); nvps.add(new BasicNameValuePair(&quot;参数1&quot;,&quot;值2&quot; )); post.setEntity(new UrlEncodedFormEntity(nvps, &quot;UTF-8&quot;)); post.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;); post.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;); CloseableHttpResponse response = client.execute(post); response.close(); 难点模拟难点在于控制cookie的一致，或者说要保证获取验证码时的会话要跟提交参数登陆时的会话保持一致，这样保证验证码是正确的。代码中httpclicent对象最好是全局变量，这样会自动帮我们维持cookie的一致性（同一对象等价于同一个cookie)]]></content>
