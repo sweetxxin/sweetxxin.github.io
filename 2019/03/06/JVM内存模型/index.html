@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Blog, Program" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -94,17 +94,21 @@
 
 
 
-<meta name="description" content="虽平凡，但热爱，开发之路且行且珍惜">
-<meta name="keywords" content="博客,计算机,编程,php,java,web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SweetXxin">
-<meta property="og:url" content="http://github.sweetxxin.top/archives/2018/index.html">
+<meta name="description" content="1.首先看个整体图 2.内存模型解释2.1.程序计数器&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当前线程所执行字节码的行号指示器，通过改变它的值来选取下一条指令。分支、循环、异常处理、线程恢复等都需要依赖它。它也是唯一一个不会抛出OutOfMemoryError异常的区域。 2.2.虚拟机栈(java栈)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;java栈描述java方法执行的内存模型">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存模型">
+<meta property="og:url" content="http://github.sweetxxin.top/2019/03/06/JVM内存模型/index.html">
 <meta property="og:site_name" content="SweetXxin">
-<meta property="og:description" content="虽平凡，但热爱，开发之路且行且珍惜">
+<meta property="og:description" content="1.首先看个整体图 2.内存模型解释2.1.程序计数器&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当前线程所执行字节码的行号指示器，通过改变它的值来选取下一条指令。分支、循环、异常处理、线程恢复等都需要依赖它。它也是唯一一个不会抛出OutOfMemoryError异常的区域。 2.2.虚拟机栈(java栈)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;java栈描述java方法执行的内存模型">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://youzhixueyuan.com/wp-content/uploads/2018/09/20180920121655_63001.jpg">
+<meta property="og:image" content="https://segmentfault.com/img/remote/1460000015605346">
+<meta property="og:updated_time" content="2019-03-06T10:41:15.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SweetXxin">
-<meta name="twitter:description" content="虽平凡，但热爱，开发之路且行且珍惜">
+<meta name="twitter:title" content="JVM内存模型">
+<meta name="twitter:description" content="1.首先看个整体图 2.内存模型解释2.1.程序计数器&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当前线程所执行字节码的行号指示器，通过改变它的值来选取下一条指令。分支、循环、异常处理、线程恢复等都需要依赖它。它也是唯一一个不会抛出OutOfMemoryError异常的区域。 2.2.虚拟机栈(java栈)&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;java栈描述java方法执行的内存模型">
+<meta name="twitter:image" content="http://youzhixueyuan.com/wp-content/uploads/2018/09/20180920121655_63001.jpg">
 
 
 
@@ -134,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://github.sweetxxin.top/archives/2018/"/>
+  <link rel="canonical" href="http://github.sweetxxin.top/2019/03/06/JVM内存模型/"/>
 
 
 
 
 
-  <title>归档 | SweetXxin</title>
+  <title>JVM内存模型 | SweetXxin</title>
   
 
 
@@ -169,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,222 +311,268 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2019/03/06/JVM内存模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sweet Xxin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SweetXxin">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">JVM内存模型</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T18:06:05+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/06/JVM内存模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/06/JVM内存模型/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/06/JVM内存模型/" class="leancloud_visitors" data-flag-title="JVM内存模型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,342
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
-        
-        
-        
+      
+        <h3 id="1-首先看个整体图"><a href="#1-首先看个整体图" class="headerlink" title="1.首先看个整体图"></a>1.首先看个整体图</h3><p><img src="http://youzhixueyuan.com/wp-content/uploads/2018/09/20180920121655_63001.jpg" alt="avatar"><br><img src="https://segmentfault.com/img/remote/1460000015605346" alt="avatar"></p>
+<h3 id="2-内存模型解释"><a href="#2-内存模型解释" class="headerlink" title="2.内存模型解释"></a>2.内存模型解释</h3><h4 id="2-1-程序计数器"><a href="#2-1-程序计数器" class="headerlink" title="2.1.程序计数器"></a>2.1.程序计数器</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;当前线程所执行字节码的行号指示器，通过改变它的值来选取下一条指令。分支、循环、异常处理、线程恢复等都需要依赖它。它也是唯一一个不会抛出OutOfMemoryError异常的区域。</p>
+<h4 id="2-2-虚拟机栈-java栈"><a href="#2-2-虚拟机栈-java栈" class="headerlink" title="2.2.虚拟机栈(java栈)"></a>2.2.虚拟机栈(java栈)</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;java栈描述java方法执行的内存模型。一个方法的执行时，会虚拟机会创建一个栈帧，存储局部变量表，操作数栈等。方法的调用到执行结束，相当于java栈的入栈出栈。<br>该区域可能会产生两种异常。线程请求的栈的深度大于虚拟机允许的最大深度，抛出StackOverflowError。若该栈支持动态拓展（一般都支持），扩展时无法申请到足够的内存，抛出OutOfMemoryError异常。</p>
+<h4 id="2-3-本地方法栈"><a href="#2-3-本地方法栈" class="headerlink" title="2.3.本地方法栈"></a>2.3.本地方法栈</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;本地方法栈与java栈功能差不多，只是java栈为java程序方法服务，而它为本地方法服务。有的虚拟机（如sun HotSpot）甚至会把二者合二为一。<br>    如java栈一样，该区域也会抛StackOverflowError、OutOfMemoryError异常。</p>
+<h4 id="2-4-JAVA堆"><a href="#2-4-JAVA堆" class="headerlink" title="2.4.JAVA堆"></a>2.4.JAVA堆</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;对于大多数应用来说，java堆是虚拟机管理的内存中分配最大的一部分。java堆是被所有线程共享的一块内存区域。<br>&nbsp;&nbsp;&nbsp;&nbsp;虚拟机启动时便创建。存放对象实例，几乎所有的对象实例都在这里分配内存。该区域也是垃圾收集器管理的主要区域，因此很多时候也被称为GC堆。<br>&nbsp;&nbsp;&nbsp;&nbsp;细分出来，该区域可以分为新生代，老年代，新生代可以再分为一个Eden空间，两个Survivor空间（from survivor，to survivor）。不论如何划分，存放的始终是实例对象。进一步划分的目的是利于回收内存，或者更快的分配内存。(内存收集器基本采用分代收集的方法)<br>&nbsp;&nbsp;&nbsp;&nbsp;java堆可以处于物理上不连续的内存空间中，只要逻辑上是连续的即可。如果在堆中没有内存完成实例分配，且堆无法再拓展，将会抛出OutOfMemoryError异常。</p>
+<h4 id="2-5-方法区"><a href="#2-5-方法区" class="headerlink" title="2.5.方法区"></a>2.5.方法区</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;方法区与java堆一样，都是线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器（JIT)编译后的代码等数据。java虚拟机规范把方法区描述为java堆的一个逻辑部分，习惯在HotSpot虚拟机上开发的程序员更愿意称其为”永久代”。<br>&nbsp;&nbsp;&nbsp;&nbsp;当方法区无法满足内存分配需求时，将会抛出OutOfMemoryError异常。</p>
+<p>####2.6.运行时常量池<br>&nbsp;&nbsp;&nbsp;&nbsp;运行时常量池是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等描述外，还有一项信息是常量池，用于存放编译期生成的各种字面量和符号引用，这部分内容在类加载后将进入方法区的运行时常量池中存放。<br>&nbsp;&nbsp;&nbsp;&nbsp;作为方法区的一部分，运行时常量池受内存限制，当常量池无法再申请到内存时会抛出OutOfMemoryError异常。</p>
+<h3 id="3-一个对象的一辈子"><a href="#3-一个对象的一辈子" class="headerlink" title="3.一个对象的一辈子"></a>3.一个对象的一辈子</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;我是一个普通的java对象，我出生在Eden区，在Eden区我还看到和我长的很像的小兄弟，我们在Eden区中玩了挺长时间。有一天Eden区中的人实在是太多了，我就被迫去了Survivor区的“From”区，自从去了Survivor区，我就开始漂了，有时候在Survivor的“From”区，有时候在Survivor的“To”区，居无定所。直到我18岁的时候，爸爸说我成人了，该去社会上闯闯了。于是我就去了年老代那边，年老代里，人很多，并且年龄都挺大的，我在这里也认识了很多人。在年老代里，我生活了20年(每次GC加一岁)，然后被回收。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1、一个人（对象）出来（new 出来）后会在Eden Space（伊甸园）无忧无虑的生活，直到GC到来打破了他们平静的生活。GC会逐一问清楚每个对象的情况，有没有钱（此对象的引用）啊，因为GC想赚钱呀，有钱的才可以敲诈嘛。然后富人就会进入Survivor Space（幸存者区），穷人的就直接kill掉。<br>&nbsp;&nbsp;&nbsp;&nbsp;2、并不是进入Survivor Space（幸存者区）后就保证人身是安全的，但至少可以活段时间。GC会定期（可以自定义）会对这些人进行敲诈，亿万富翁每次都给钱，GC很满意，就让其进入了Genured Gen(养老区)。万元户经不住几次敲诈就没钱了，GC看没有啥价值啦，就直接kill掉了。<br>&nbsp;&nbsp;&nbsp;&nbsp;3、进入到养老区的人基本就可以保证人身安全啦，但是亿万富豪有的也会挥霍成穷光蛋，只要钱没了，GC还是kill掉。<br>&nbsp;&nbsp;&nbsp;&nbsp;分区的目的：新生区由于对象产生的比较多并且大都是朝生夕灭的，所以直接采用标记-清理算法。而养老区生命力很强，则采用复制算法，针对不同情况使用不同算法</p>
 
-        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
           </div>
         
-        
 
         
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/10/10/jsp开发过程中的乱码问题及其解决方案/" itemprop="url">
-              
-                <span itemprop="name">jsp开发过程中的乱码问题及其解决方案</span>
-              
-            </a>
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-10T18:46:28+08:00"
-              content="2018-10-10" >
-          10-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/10/jsp开发过程中的乱码问题及其解决方案/" rel="next" title="jsp开发过程中的乱码问题及其解决方案">
+                <i class="fa fa-chevron-left"></i> jsp开发过程中的乱码问题及其解决方案
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/06/谈社团招新/" itemprop="url">
-              
-                <span itemprop="name">谈社团招新</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-06T01:22:37+08:00"
-              content="2018-09-06" >
-          09-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/03/http模拟登陆/" itemprop="url">
-              
-                <span itemprop="name">http模拟登陆</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-03T14:25:44+08:00"
-              content="2018-09-03" >
-          09-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/25/First/" itemprop="url">
-              
-                <span itemprop="name">First</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-25T13:55:21+08:00"
-              content="2018-08-25" >
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/23/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-23T21:33:20+08:00"
-              content="2018-08-23" >
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -530,6 +580,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -550,8 +607,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -631,6 +697,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-首先看个整体图"><span class="nav-number">1.</span> <span class="nav-text">1.首先看个整体图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-内存模型解释"><span class="nav-number">2.</span> <span class="nav-text">2.内存模型解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-程序计数器"><span class="nav-number">2.1.</span> <span class="nav-text">2.1.程序计数器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-虚拟机栈-java栈"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.虚拟机栈(java栈)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-本地方法栈"><span class="nav-number">2.3.</span> <span class="nav-text">2.3.本地方法栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-JAVA堆"><span class="nav-number">2.4.</span> <span class="nav-text">2.4.JAVA堆</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-方法区"><span class="nav-number">2.5.</span> <span class="nav-text">2.5.方法区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-一个对象的一辈子"><span class="nav-number">3.</span> <span class="nav-text">3.一个对象的一辈子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -791,6 +873,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1314,6 +1400,23 @@
   </script>
 
   
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 13417,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
 
   
   
