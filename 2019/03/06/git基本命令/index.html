@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Blog, Program" />
+  <meta name="keywords" content="git,github," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="本地仓库基本操作工作区-暂存区-版本区创建本地仓库工作目录mkdir test 初始化本地仓库git init 在工作目录test里添加文件echo “first file” &amp;gt;&amp;gt; test.txt 将工作目录里的文件添加到暂存区git add test.txt 将暂存区里的文件提交到版本区git commit -m “first commit”删除回退操作修改了文件内容并add了文件">
-<meta name="keywords" content="博客,计算机,编程,php,java,web">
+<meta name="description" content="工作区-暂存区-本地仓库-远程仓库关系对于任何一个文件，在 Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。已提交表示该文件已经被安全地保存在本地仓库中了；已修改表示修改了某个文件，但还没有提交保存；已暂存表示把已修改的文件放在下次提交时要保存的清单中。将本地仓库与远程仓库关联，然后可以将本地仓库内容推送到远程仓库中。  本地仓库基本操作">
+<meta name="keywords" content="git,github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git基本命令">
 <meta property="og:url" content="http://github.sweetxxin.top/2019/03/06/git基本命令/index.html">
 <meta property="og:site_name" content="SweetXxin">
-<meta property="og:description" content="本地仓库基本操作工作区-暂存区-版本区创建本地仓库工作目录mkdir test 初始化本地仓库git init 在工作目录test里添加文件echo “first file” &amp;gt;&amp;gt; test.txt 将工作目录里的文件添加到暂存区git add test.txt 将暂存区里的文件提交到版本区git commit -m “first commit”删除回退操作修改了文件内容并add了文件">
+<meta property="og:description" content="工作区-暂存区-本地仓库-远程仓库关系对于任何一个文件，在 Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。已提交表示该文件已经被安全地保存在本地仓库中了；已修改表示修改了某个文件，但还没有提交保存；已暂存表示把已修改的文件放在下次提交时要保存的清单中。将本地仓库与远程仓库关联，然后可以将本地仓库内容推送到远程仓库中。  本地仓库基本操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-06T10:58:48.142Z">
+<meta property="og:updated_time" content="2019-03-07T12:14:18.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基本命令">
-<meta name="twitter:description" content="本地仓库基本操作工作区-暂存区-版本区创建本地仓库工作目录mkdir test 初始化本地仓库git init 在工作目录test里添加文件echo “first file” &amp;gt;&amp;gt; test.txt 将工作目录里的文件添加到暂存区git add test.txt 将暂存区里的文件提交到版本区git commit -m “first commit”删除回退操作修改了文件内容并add了文件">
+<meta name="twitter:description" content="工作区-暂存区-本地仓库-远程仓库关系对于任何一个文件，在 Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。已提交表示该文件已经被安全地保存在本地仓库中了；已修改表示修改了某个文件，但还没有提交保存；已暂存表示把已修改的文件放在下次提交时要保存的清单中。将本地仓库与远程仓库关联，然后可以将本地仓库内容推送到远程仓库中。  本地仓库基本操作">
 
 
 
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  360
+                  693
                 </span>
               
 
@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -448,9 +448,52 @@
       
 
       
-        <h2 id="本地仓库基本操作"><a href="#本地仓库基本操作" class="headerlink" title="本地仓库基本操作"></a>本地仓库基本操作</h2><p>工作区-暂存区-版本区<br>创建本地仓库工作目录<br>mkdir test<br> 初始化本地仓库<br>git init<br> 在工作目录test里添加文件<br>echo “first file” &gt;&gt; test.txt<br> 将工作目录里的文件添加到暂存区<br>git add test.txt<br> 将暂存区里的文件提交到版本区<br>git commit -m “first commit”<br>删除回退操作<br>修改了文件内容并add了文件,但尚未commit,回退到修改前<br>git reset HEAD test.txt<br>git checkout – test.txt<br>修改了文件内容并commit了文件，回退<br>git log<br>git reset –hard “cid”<br>清空本地仓库<br>git rm test.txt   删了文件，暂存区还有记录<br>git commit -m “delete” 提交删除，清空暂存区</p>
-<p>远程仓库<br>创建ssh key<br>ssh-keygen -t rsa “<a href="mailto:yourmail@example.com" target="_blank" rel="noopener">yourmail@example.com</a>“<br>到用户目录下的.ssh 复制.pub到github构建ssh key<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> 测试<br>mkdir test2<br>echo “test2” &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “test2”<br>git remote add origin <a href="mailto:yourgithbub@name.git" target="_blank" rel="noopener">yourgithbub@name.git</a><br>git push -u origin master(-u等于关联，后面可以直接git push)<br>克隆仓库<br>git clone <a href="mailto:yourgithub@name.git" target="_blank" rel="noopener">yourgithub@name.git</a><br>cd name<br>echo “clone add file” &gt;&gt; test3.txt<br>git add test3.txt<br>git commit -m “clone”<br>git push<br>标签关联<br>git tag<br>git tag v1.0.1<br>git tag -a name -m “comment”<br>git push origin v1.0.1<br>git tag -d name<br>分支管理<br>git branch<br>git branch name<br>git checkout name<br>echo “in branch” &gt;&gt; branch.txt<br>git add branch.txt<br>git commit -m “branch”<br>git push –set-upstream origin name<br>check out master<br>git merge name<br>git branch -d name<br>git pull<br>git fetch</p>
-
+        <h2 id="工作区-暂存区-本地仓库-远程仓库关系"><a href="#工作区-暂存区-本地仓库-远程仓库关系" class="headerlink" title="工作区-暂存区-本地仓库-远程仓库关系"></a>工作区-暂存区-本地仓库-远程仓库关系</h2><p>对于任何一个文件，在 Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。已提交表示该文件已经被安全地保存在本地仓库中了；已修改表示修改了某个文件，但还没有提交保存；已暂存表示把已修改的文件放在下次提交时要保存的清单中。将本地仓库与远程仓库关联，然后可以将本地仓库内容推送到远程仓库中。 </p>
+<h2 id="本地仓库基本操作"><a href="#本地仓库基本操作" class="headerlink" title="本地仓库基本操作"></a>本地仓库基本操作</h2><h3 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h3><pre><code>mkdir test #创建本地仓库工作目录
+git init #初始化本地仓库
+echo &quot;first file&quot; &gt;&gt; #test.txt 在工作目录test里添加文件
+git add test.txt #将工作目录里的文件添加到暂存区
+git commit -m &quot;first commit&quot; #将暂存区里的文件提交到版本地仓库
+</code></pre><h3 id="删除回退操作"><a href="#删除回退操作" class="headerlink" title="删除回退操作"></a>删除回退操作</h3><h4 id="修改了文件内容并add了文件-但尚未commit-回退到修改前"><a href="#修改了文件内容并add了文件-但尚未commit-回退到修改前" class="headerlink" title="修改了文件内容并add了文件,但尚未commit,回退到修改前"></a>修改了文件内容并add了文件,但尚未commit,回退到修改前</h4><pre><code>git reset HEAD test.txt
+git checkout -- test.txt
+</code></pre><h4 id="修改了文件内容并commit了文件，回退"><a href="#修改了文件内容并commit了文件，回退" class="headerlink" title="修改了文件内容并commit了文件，回退"></a>修改了文件内容并commit了文件，回退</h4><pre><code>git log #拿到commit-id
+git reset --hard &quot;commit-id&quot; #执行回退
+</code></pre><h4 id="清空本地仓库"><a href="#清空本地仓库" class="headerlink" title="清空本地仓库"></a>清空本地仓库</h4><pre><code>git rm test.txt   #删了文件，暂存区还有记录
+git commit -m &quot;delete&quot; #提交删除，清空暂存区
+</code></pre><h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="创建ssh-key"><a href="#创建ssh-key" class="headerlink" title="创建ssh key"></a>创建ssh key</h3><pre><code>1.ssh-keygen -t rsa &quot;yourmail@example.com&quot; #创建ssh key
+2.到用户目录下的.ssh文件夹 复制.pub到github构建ssh key
+3.ssh -T git@github.com 测试是否连接成功
+</code></pre><h3 id="创建本地仓库，并提交到github远程仓库"><a href="#创建本地仓库，并提交到github远程仓库" class="headerlink" title="创建本地仓库，并提交到github远程仓库"></a>创建本地仓库，并提交到github远程仓库</h3><pre><code>mkdir test2
+echo &quot;test2&quot; &gt;&gt; README.md
+git init
+git add README.md
+git commit -m &quot;test2&quot;
+git remote add origin yourgithbub@name.git #添加一个新的远程仓库
+git push -u origin master #(推送到远程仓库。-u等于关联，后面可以直接git push)
+</code></pre><h3 id="克隆远程仓库，修改文件并提交"><a href="#克隆远程仓库，修改文件并提交" class="headerlink" title="克隆远程仓库，修改文件并提交"></a>克隆远程仓库，修改文件并提交</h3><pre><code>git clone yourgithub@name.git #克隆远程仓库
+cd name                      #进入目录
+echo &quot;clone add file&quot; &gt;&gt; test3.txt
+git add test3.txt
+git commit -m &quot;clone&quot;
+git push
+</code></pre><h2 id="标签关联"><a href="#标签关联" class="headerlink" title="标签关联"></a>标签关联</h2><pre><code>git tag         #列出所有标签
+git tag v1.0.1  #新建标签v1.0.1
+git tag -a tagName -m &quot;comment&quot;  #创建tag并且添加了附注信息
+git push origin --tags v1.0.1  #将tag推送到远程仓库
+git tag -d tagName  #删除tag 
+</code></pre><h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><pre><code>git branch  #列出所有分支
+git branch name #新建分支name
+git checkout name #切换到name分支
+echo &quot;in branch&quot; &gt;&gt; branch.txt
+git add branch.txt
+git commit -m &quot;branch&quot;
+git push --set-upstream origin name #将name分支提交到远程仓库
+check out master
+git merge name  #合并分支
+git branch -d name #删除分支
+git fetch origin dev:dev #将远程的dev分支拉取到本地的dev分支
+git pull origin master:brantest #pull=fetch+merge,将远程的mater分支fetch下来并和branchtest合并
+</code></pre>
       
     </div>
     
@@ -472,6 +515,14 @@
       
     </div>
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+        </div>
       
 
       
@@ -646,7 +697,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -695,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地仓库基本操作"><span class="nav-number">1.</span> <span class="nav-text">本地仓库基本操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工作区-暂存区-本地仓库-远程仓库关系"><span class="nav-number">1.</span> <span class="nav-text">工作区-暂存区-本地仓库-远程仓库关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地仓库基本操作"><span class="nav-number">2.</span> <span class="nav-text">本地仓库基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建本地仓库"><span class="nav-number">2.1.</span> <span class="nav-text">创建本地仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除回退操作"><span class="nav-number">2.2.</span> <span class="nav-text">删除回退操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改了文件内容并add了文件-但尚未commit-回退到修改前"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改了文件内容并add了文件,但尚未commit,回退到修改前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改了文件内容并commit了文件，回退"><span class="nav-number">2.2.2.</span> <span class="nav-text">修改了文件内容并commit了文件，回退</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清空本地仓库"><span class="nav-number">2.2.3.</span> <span class="nav-text">清空本地仓库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程仓库"><span class="nav-number">3.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建ssh-key"><span class="nav-number">3.1.</span> <span class="nav-text">创建ssh key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建本地仓库，并提交到github远程仓库"><span class="nav-number">3.2.</span> <span class="nav-text">创建本地仓库，并提交到github远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#克隆远程仓库，修改文件并提交"><span class="nav-number">3.3.</span> <span class="nav-text">克隆远程仓库，修改文件并提交</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签关联"><span class="nav-number">4.</span> <span class="nav-text">标签关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">5.</span> <span class="nav-text">分支管理</span></a></li></ol></div>
             
 
           </div>
