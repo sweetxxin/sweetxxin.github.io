@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="SweetXxin">
 <meta property="og:description" content="高可用高并发系统设计架构设计三大定律墨菲定律  任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生 康威定律   系统架构师公司组织架构的反映按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-18T07:02:32.127Z">
+<meta property="og:updated_time" content="2019-08-18T07:28:41.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建高可用高并发系统">
 <meta name="twitter:description" content="高可用高并发系统设计架构设计三大定律墨菲定律  任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生 康威定律   系统架构师公司组织架构的反映按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆">
@@ -477,8 +477,7 @@
 <p>二八定律 </p>
 <p> 80%的结果取决于20%的原因</p>
 <h2 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h2><p>所谓高可用，即要保证系统在几乎任何时候都能正常运行，功能正常，保证系统不出问题，“永不宕机”。</p>
-<p>1.单机系统下的可用性问题，从Nginx-&gt;Tomcat-&gt;db/soa来看，单点问题会影响系统的高可用。比如要是这个链路上其中一个单点挂了，整个系统就不可以用了。（Nginx负载均衡等，Tomcat提供服务，db存储数据）。所以引申</p>
-<p>2.出来主备/集群模式，防止单点问题。<br>高并发场景下，请求过多也会因为后端瓶颈点引起整个系统down掉，如周杰伦演唱会抢票，高铁抢票，所以一般情况下对并发场景我们会限流，采用mq等消息队列形式削峰，保证后端系统不会down掉。</p>
+<p>1.单机系统下的可用性问题，从Nginx-&gt;Tomcat-&gt;db/soa来看，单点问题会影响系统的高可用。比如要是这个链路上其中一个单点挂了，整个系统就不可以用了。（Nginx负载均衡等，Tomcat提供服务，db存储数据）。所以引申出来主备/集群模式，防止单点问题。<br>2.高并发场景下，请求过多也会因为后端瓶颈点引起整个系统down掉，如周杰伦演唱会抢票，高铁抢票，所以一般情况下对并发场景我们会限流，采用mq等消息队列形式削峰，保证后端系统不会down掉。</p>
 <h3 id="设计建议"><a href="#设计建议" class="headerlink" title="设计建议"></a>设计建议</h3><h4 id="1-减少单点"><a href="#1-减少单点" class="headerlink" title="1.减少单点"></a>1.减少单点</h4><p>去去单点首先要识别出整个系统所有主链路的单点，如机房（同城异地双机房）、应用服务器、DNS服务器、SFTP服务器、LBS（基于位置服务）<br>缓存服务器、数据库、消息服务器、代理服务器和专线等。<br>如系统通过专线调用对方服务，需要考虑同时拉联通和电信的专线，联通或电信的专线还是有一定效率出现问题但是同时出现问题的概率就会小很多。优先使用软负载（负载软件如Nginx），使用硬负载（外部网络和服务器间的硬件设备如F5）兜底。</p>
 <h4 id="2-减少依赖"><a href="#2-减少依赖" class="headerlink" title="2.减少依赖"></a>2.减少依赖</h4><p>减少DNS依赖，减少远程服务依赖。DNS依赖可以尝试设置本地host，用工具给所有服务器推送最新的域名映射关系，通过本地缓存或者近端服务减少RPC（远程过程调用）调用。</p>
 <h4 id="3-限制循环"><a href="#3-限制循环" class="headerlink" title="3.限制循环"></a>3.限制循环</h4><p>避免无限死循环，导致CPU利用率百分百，可以设置for循环的最大循环次数，如最大1000次</p>
@@ -764,7 +763,7 @@ MySQL： Innodb/MyISAM等Query Cache、Key Cache、Innodb Buffer Size等
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
