@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="生活闲谈," />
+  <meta name="keywords" content="系统设计," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="1   自从开学后，就开始准备招新事宜，我留任校团委网络中心，已经大三的我，不论当时留下来的原因是什么，如今尘埃落定，居其位,思其责，做其事。我其实很想逃避这些东西，但如今我逃避不了了。谈起招新，谈起扫楼，谈起跟其他组织竞争，可能有人会在背后说闲话，但我只能说，我只是在尽力做我能做的事情，没有恶意，我只是提供了一个选择，一个通往我部门的选择而已。但似乎，从其他人眼中，我所做的似有不妥。可能毕竟是竞">
-<meta name="keywords" content="生活闲谈">
+<meta name="description" content="高可用高并发系统设计架构设计三大定律墨菲定律  任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生 康威定律   系统架构师公司组织架构的反映按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆">
+<meta name="keywords" content="系统设计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="谈社团招新">
-<meta property="og:url" content="http://github.sweetxxin.top/2018/09/06/谈社团招新/index.html">
+<meta property="og:title" content="搭建高可用高并发系统">
+<meta property="og:url" content="http://github.sweetxxin.top/2019/08/18/搭建高可用高并发系统/index.html">
 <meta property="og:site_name" content="SweetXxin">
-<meta property="og:description" content="1   自从开学后，就开始准备招新事宜，我留任校团委网络中心，已经大三的我，不论当时留下来的原因是什么，如今尘埃落定，居其位,思其责，做其事。我其实很想逃避这些东西，但如今我逃避不了了。谈起招新，谈起扫楼，谈起跟其他组织竞争，可能有人会在背后说闲话，但我只能说，我只是在尽力做我能做的事情，没有恶意，我只是提供了一个选择，一个通往我部门的选择而已。但似乎，从其他人眼中，我所做的似有不妥。可能毕竟是竞">
+<meta property="og:description" content="高可用高并发系统设计架构设计三大定律墨菲定律  任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生 康威定律   系统架构师公司组织架构的反映按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-05T17:26:55.740Z">
+<meta property="og:updated_time" content="2019-08-18T07:02:32.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="谈社团招新">
-<meta name="twitter:description" content="1   自从开学后，就开始准备招新事宜，我留任校团委网络中心，已经大三的我，不论当时留下来的原因是什么，如今尘埃落定，居其位,思其责，做其事。我其实很想逃避这些东西，但如今我逃避不了了。谈起招新，谈起扫楼，谈起跟其他组织竞争，可能有人会在背后说闲话，但我只能说，我只是在尽力做我能做的事情，没有恶意，我只是提供了一个选择，一个通往我部门的选择而已。但似乎，从其他人眼中，我所做的似有不妥。可能毕竟是竞">
+<meta name="twitter:title" content="搭建高可用高并发系统">
+<meta name="twitter:description" content="高可用高并发系统设计架构设计三大定律墨菲定律  任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生 康威定律   系统架构师公司组织架构的反映按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://github.sweetxxin.top/2018/09/06/谈社团招新/"/>
+  <link rel="canonical" href="http://github.sweetxxin.top/2019/08/18/搭建高可用高并发系统/"/>
 
 
 
 
 
-  <title>谈社团招新 | SweetXxin</title>
+  <title>搭建高可用高并发系统 | SweetXxin</title>
   
 
 
@@ -322,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2018/09/06/谈社团招新/">
+    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2019/08/18/搭建高可用高并发系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sweet Xxin">
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">谈社团招新</h1>
+          <h1 class="post-title" itemprop="name headline">搭建高可用高并发系统</h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T01:22:37+08:00">
-                2018-09-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T12:04:11+08:00">
+                2019-08-18
               </time>
             
 
@@ -374,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/我说/" itemprop="url" rel="index">
-                    <span itemprop="name">我说</span>
+                  <a href="/categories/设计理论/" itemprop="url" rel="index">
+                    <span itemprop="name">设计理论</span>
                   </a>
                 </span>
 
@@ -392,8 +392,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/06/谈社团招新/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/06/谈社团招新/" itemprop="commentCount"></span>
+                <a href="/2019/08/18/搭建高可用高并发系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/18/搭建高可用高并发系统/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,7 +401,7 @@
 
           
           
-             <span id="/2018/09/06/谈社团招新/" class="leancloud_visitors" data-flag-title="谈社团招新">
+             <span id="/2019/08/18/搭建高可用高并发系统/" class="leancloud_visitors" data-flag-title="搭建高可用高并发系统">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,7 +433,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,007
+                  3,261
                 </span>
               
 
@@ -449,7 +449,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  11
                 </span>
               
             </div>
@@ -470,12 +470,114 @@
       
 
       
-        <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>   自从开学后，就开始准备招新事宜，我留任校团委网络中心，已经大三的我，不论当时留下来的原因是什么，如今尘埃落定，居其位,思其责，做其事。我其实很想逃避这些东西，但如今我逃避不了了。谈起招新，谈起扫楼，谈起跟其他组织竞争，可能有人会在背后说闲话，但我只能说，我只是在尽力做我能做的事情，没有恶意，我只是提供了一个选择，一个通往我部门的选择而已。但似乎，从其他人眼中，我所做的似有不妥。可能毕竟是竞争，可能我做的还不够好。</p>
-<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>我渐渐觉得社团是一个很迷的地方。如果一个人，坚持了一开始的想法，那么可能他就是体验社团一年，尝尝新鲜感，留下美好的回忆，然后大二离场。有的人，开始很融入这个社团，然后开始改变自己，改变想法，成功地走上了一条新的路，或者说被社团改造。我不能说这两种情况哪一个比较好，毕竟未来谁能预料地到。社团这条路，一开始，一群人挤着抢着上车，司机也各显神通地邀请，然而讽刺的是，到最后，幸运的人成功的进入了社团，可怜的人，从被抢来抢去，到被抛来抛去，最后再也鼓不起勇气去报其他。而更讽刺的是，某些幸运的人没有做出他应该做到的表现，而当时如果招入的是其他人，结局也又未可知。这时，我们往往会说，这就是命，或者说，缘分使然，感怀亦是徒然。</p>
-<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p>不知为何，我开始会想很多东西，考虑很多东西，我开始担心自己做的不够好，我甚至害怕带不起他们。我开始为这些事操心，明明，我应该大胆放手，让他们成长。我似乎很自卑，但在一部分人眼中，我好像也很“完美”。我感觉我变了，我开始想写一些感受，我的话开始变的很多。</p>
-<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p>我的大学只选择了一个社团，可能我是无法体会到那些报了多个社团的人的感受，我甚至都无法去评论，因为那样显得很片面。而有的人也是只选择了一个社团，但是他却也局限于只了解这一社团，似有井底之蛙之嫌。谈到社团，却又不得不提归属感一词，有的人愿意为部门付出很多，而且无怨无悔，甚至乐此不疲，而有的人唯恐避之不及。有的人只想得到什么，不打算去付出。我不知道每一个他们是怎么想的，我也不知道他们是否认真考虑过它的意义。或许是我的成长环境决定了我的所思所想，在外人看来觉得完全没有必要去做某些我认为才是真正该做该学的事。但想回来，我应该是个利己主义者，但为何偏偏去替他人担忧他的未来。是因为他们过的比我洒脱，我需要自我安慰自己？我想有部分原因是这样的。可是明明，我对自己的未来都没能把控好，但何苦去评判他人。这一点，我不知道为什么，或者说，我还没能想到这一层。</p>
-<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p>走走停停，大学就这么过去了，可能毕业后的自己，回想如今，又是千思百绪，又或者嘲笑自己。甚至于说，多年之后，我才记起，我在大三的招新工作里，写了这么一篇文章。如果现在的我，无意间翻到了初中时的我写的东西，多么稚嫩，却也很美好。</p>
+        <h1 id="高可用高并发系统设计"><a href="#高可用高并发系统设计" class="headerlink" title="高可用高并发系统设计"></a>高可用高并发系统设计</h1><h2 id="架构设计三大定律"><a href="#架构设计三大定律" class="headerlink" title="架构设计三大定律"></a>架构设计三大定律</h2><p>墨菲定律 </p>
+<p>任何事没有表面看起来那么简单所有的事都会比预计的时间长 - 可能出错的事情总会出错 - 担心某种事情发生，那么它就更有可能发生</p>
+<p>康威定律 </p>
+<p> 系统架构师公司组织架构的反映<br>按照业务闭环进行系统拆分/组织架构划分，实现闭环、高内聚、低耦合，减少沟通成本如果沟通出现问题，应该考虑进行系统和组织架构的调整 适合时机进行系统拆分。不要一开始就吧系统、服务拆分拆的非常细，虽然闭环，但是每个人维护的系统多，维护成本高 - 微服务架构的理论基础 - 康威定律 </p>
+<p>二八定律 </p>
+<p> 80%的结果取决于20%的原因</p>
+<h2 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h2><p>所谓高可用，即要保证系统在几乎任何时候都能正常运行，功能正常，保证系统不出问题，“永不宕机”。</p>
+<p>1.单机系统下的可用性问题，从Nginx-&gt;Tomcat-&gt;db/soa来看，单点问题会影响系统的高可用。比如要是这个链路上其中一个单点挂了，整个系统就不可以用了。（Nginx负载均衡等，Tomcat提供服务，db存储数据）。所以引申</p>
+<p>2.出来主备/集群模式，防止单点问题。<br>高并发场景下，请求过多也会因为后端瓶颈点引起整个系统down掉，如周杰伦演唱会抢票，高铁抢票，所以一般情况下对并发场景我们会限流，采用mq等消息队列形式削峰，保证后端系统不会down掉。</p>
+<h3 id="设计建议"><a href="#设计建议" class="headerlink" title="设计建议"></a>设计建议</h3><h4 id="1-减少单点"><a href="#1-减少单点" class="headerlink" title="1.减少单点"></a>1.减少单点</h4><p>去去单点首先要识别出整个系统所有主链路的单点，如机房（同城异地双机房）、应用服务器、DNS服务器、SFTP服务器、LBS（基于位置服务）<br>缓存服务器、数据库、消息服务器、代理服务器和专线等。<br>如系统通过专线调用对方服务，需要考虑同时拉联通和电信的专线，联通或电信的专线还是有一定效率出现问题但是同时出现问题的概率就会小很多。优先使用软负载（负载软件如Nginx），使用硬负载（外部网络和服务器间的硬件设备如F5）兜底。</p>
+<h4 id="2-减少依赖"><a href="#2-减少依赖" class="headerlink" title="2.减少依赖"></a>2.减少依赖</h4><p>减少DNS依赖，减少远程服务依赖。DNS依赖可以尝试设置本地host，用工具给所有服务器推送最新的域名映射关系，通过本地缓存或者近端服务减少RPC（远程过程调用）调用。</p>
+<h4 id="3-限制循环"><a href="#3-限制循环" class="headerlink" title="3.限制循环"></a>3.限制循环</h4><p>避免无限死循环，导致CPU利用率百分百，可以设置for循环的最大循环次数，如最大1000次</p>
+<h4 id="4-增加限流"><a href="#4-增加限流" class="headerlink" title="4.增加限流"></a>4.增加限流</h4><p>对外服务增加限流，注意限流的值最好是压测过的，如果没有压测过，只能设置成平时的峰值流量，否则可能增加一点流量就不能提供服务了。</p>
+<h4 id="5-控制流量"><a href="#5-控制流量" class="headerlink" title="5.控制流量"></a>5.控制流量</h4><p>避免异常流量对应用服务器产生影响，可以对指定指定服务设置流量限制，如QPS(每秒查询率),TPS(每秒处理事务数),QPH(每小时总请求量),QPD(每天总请求量)</p>
+<h4 id="6-精准监控"><a href="#6-精准监控" class="headerlink" title="6.精准监控"></a>6.精准监控</h4><p>对CPU利用率，load，内存，带框，系统调用量，应用错误量，PV(页面浏览量),UV(独立访客量，以cookie为主)和业务进行监控，避免内存泄露和异常代码对系统产生影响，配置一定要精准，如平时设置内存利用率是50%，监控可以配置成60%进行报警，这样可以提前感知内存泄露问题，避免应用无响应。</p>
+<h4 id="7-无状态"><a href="#7-无状态" class="headerlink" title="7.无状态"></a>7.无状态</h4><p>服务器不能保存用户状态数据，如在集群下不能用static保存用户数据，不能长时间把用户文件存放在服务器本地。服务器有状态会难以扩容，出现单点问题。</p>
+<h4 id="8-容量规划"><a href="#8-容量规划" class="headerlink" title="8.容量规划"></a>8.容量规划</h4><p>定期对容量进行评估，如大促前进行压测和容量预估，根据需要进行扩容。如双11进行扩容。</p>
+<h4 id="9-功能开关"><a href="#9-功能开关" class="headerlink" title="9.功能开关"></a>9.功能开关</h4><p>打开和关闭某些功能，如消息量过大，系统处理不了，把开关打开后直接丢弃信息不处理。上线新功能增加开关，如果出现问题就关闭新功能。</p>
+<h4 id="10-设置超时"><a href="#10-设置超时" class="headerlink" title="10.设置超时"></a>10.设置超时</h4><p>设置连接超时和读超时设置，不应该太大，如果是内部调用连接超时可以设置成1秒，读超时3秒，外部系统调用连接超时可以设置成3秒，读超时设置20秒。</p>
+<h3 id="11-重试策略"><a href="#11-重试策略" class="headerlink" title="11.重试策略"></a>11.重试策略</h3><p>当调用外部服务异常时可以设置重试策略，每次重试时间递增，但需要设置最大重试次数和重试开关，避免对下游系统产生影响。</p>
+<h4 id="12-隔离"><a href="#12-隔离" class="headerlink" title="12.隔离"></a>12.隔离</h4><p>应用隔离，模块隔离，机房隔离，线程池隔离。按照优先级，不变和变几个维度来隔离应用和模块，如抽象和不变的代码放在一个模块，这个模块的代码几乎不会修改，可用性高，经常变的业务逻辑放在一个模块里，这样就算出现问题，也只影响某一业务。不同业务使用不同的线程池，避免低先级任务阻塞高优先级，或者高优先级任务过多影响低优先级任务永不执行。</p>
+<h4 id="13-异步调用"><a href="#13-异步调用" class="headerlink" title="13.异步调用"></a>13.异步调用</h4><p>同步调用变成异步调用，解决远程调用障碍或者调用超时对系统的影响。</p>
+<h4 id="14-热点缓存"><a href="#14-热点缓存" class="headerlink" title="14.热点缓存"></a>14.热点缓存</h4><p>对热点数据进行缓存，降低RPC调用。如B系统提供名单服务，B系统可以提供一个client SDK提供近端缓存服务，定期去服务器读取数据，减少RPC调用。</p>
+<h4 id="15-缓存容灾"><a href="#15-缓存容灾" class="headerlink" title="15.缓存容灾"></a>15.缓存容灾</h4><p>当数据库不可用时可以使用缓存的数据。并设置分级缓存，如优先读取本地缓存，其次分布式缓存。</p>
+<h4 id="16-分级缓存"><a href="#16-分级缓存" class="headerlink" title="16.分级缓存"></a>16.分级缓存</h4><p>优先读取本地缓存，其次读取分布式缓存。通过推模式更新本地缓存。</p>
+<h4 id="17-系统分级"><a href="#17-系统分级" class="headerlink" title="17.系统分级"></a>17.系统分级</h4><p>对系统进行分级，如ABC三个等级，高级别系统不依赖与低级别系统，并且高级别系统比低级别系统高可用虑高</p>
+<h4 id="18-服务降级"><a href="#18-服务降级" class="headerlink" title="18.服务降级"></a>18.服务降级</h4><p>如果系统出现响应缓慢等状况，可以关闭部分功能，从而释放系统资源，保证核心服务的正常运行。需要识别哪些服务可以降级，比如突然有大量消息流入，导致服务不可用，我们会直接把消息丢掉。或者设置流控，拒绝为低级别系统提供服务。</p>
+<h4 id="19-流量蓄洪"><a href="#19-流量蓄洪" class="headerlink" title="19.流量蓄洪"></a>19.流量蓄洪</h4><p>当流量陡增时，可以将请求进行蓄洪，如把请求保存在数据库中，再按照指定的QPS进行泄洪，有效保护下游系统，也保证了服务的可用性。调用对方系统，对方系统缓慢或者无响应时，可采取自动蓄洪。</p>
+<h4 id="20-服务权重"><a href="#20-服务权重" class="headerlink" title="20.服务权重"></a>20.服务权重</h4><p>在集群环境中，可自动识别高性能服务，拒绝调用性能低的服务，如在集群环境中，对调用超时的服务器进行权重降低，优先调用权重高的服务器。</p>
+<h4 id="21-依赖简化"><a href="#21-依赖简化" class="headerlink" title="21.依赖简化"></a>21.依赖简化</h4><p>减少系统间的依赖，如使用消息驱动。A和B系统通过消息服务器传递数据，A和B系统使用数据库进行读写分离，A系统负责往数据库写数据，B系统负责读数据，因为数据存放在数据库中，当A不可用时，短时间不影响B系统提供服务。</p>
+<h4 id="22-弹性扩容"><a href="#22-弹性扩容" class="headerlink" title="22.弹性扩容"></a>22.弹性扩容</h4><p>根据资源的使用率自动或者手动进行扩容。如带宽不够用，快速增加带宽。</p>
+<h4 id="23-灰度和回滚"><a href="#23-灰度和回滚" class="headerlink" title="23.灰度和回滚"></a>23.灰度和回滚</h4><p>发布新功能只让部分服务器生效，且观察几天逐渐切流，如果出现问题只影响部分客户。出现问题快速回滚，或者直接下线灰度的机器。</p>
+<h4 id="24-减少远程调用"><a href="#24-减少远程调用" class="headerlink" title="24.减少远程调用"></a>24.减少远程调用</h4><p>优先调用本地JVM内服务，其次是同机房服务，然后是同城服务，最后是跨城服务。如A调用B，B调用互联网C的系统获取数据，B系统可以把数据缓存起来，并设置数据的保鲜度，减少B对C的依赖。配置中心把注册服务的地址推送到调用服务的系统本地。参数中心把参数配置信息推送到系统的本地内存，而不是让系统去远程服务器获取参数信息。</p>
+<h4 id="25-熔断机制"><a href="#25-熔断机制" class="headerlink" title="25.熔断机制"></a>25.熔断机制</h4><p>增加熔断机制，当监控出现数据大幅涨跌时，及时中断，避免对业务产生更大影响。如我们做指标计算时，指标可以计算慢，但不能算错，如果发现某个用户的指标环比或同比增长一倍或跌零，会考虑保存所有信息，并终止该用户的指标计算。</p>
+<h4 id="26-运行时加载模块"><a href="#26-运行时加载模块" class="headerlink" title="26.运行时加载模块"></a>26.运行时加载模块</h4><p>我们会把经常变的业务代码变成一个个业务模块，使用JAVA的ClassLoader在运行时动态加载和卸载模块，当模块有问题时，可以快速修复。</p>
+<h3 id="27-代码扫描"><a href="#27-代码扫描" class="headerlink" title="27.代码扫描#"></a>27.代码扫描#</h3><p>使用IDEA代码分析等工具进行代码扫描，识别出程序中的BUG,如空指针异常，循环依赖。</p>
+<h4 id="28-自动备份"><a href="#28-自动备份" class="headerlink" title="28.自动备份"></a>28.自动备份</h4><p>程序，系统配置和数据定期进行备份。可以使用Linux命令和shell脚本定时执行备份策略，自动进行本地或者异地备份。出现问题时能快速重新部署。</p>
+<h4 id="29-线上测压"><a href="#29-线上测压" class="headerlink" title="29.线上测压"></a>29.线上测压</h4><p>系统的对外服务需要进行压测，知道该服务承受的QPS和TPS,从而做出相对精准的限流。</p>
+<h2 id="高并发"><a href="#高并发" class="headerlink" title="高并发"></a>高并发</h2><pre><code>所谓高并发，即能够同时接受处理千万级乃至亿万级的并发访问。
+高并发又分为cpu密集型和io密集型。前者要求网站的计算能力要高，后者要求网站的吞吐能力要高。
+</code></pre><h3 id="高并发设计有几个原则如下"><a href="#高并发设计有几个原则如下" class="headerlink" title="高并发设计有几个原则如下:"></a>高并发设计有几个原则如下:</h3><h4 id="1-无状态"><a href="#1-无状态" class="headerlink" title="1.无状态"></a>1.无状态</h4><pre><code>无状态应用，便于水平扩展
 
+有状态配置可通过配置中心实现无状态
+
+实践: Disconf、Yaconf、Zookpeer、Consul、Confd、Diamond、Xdiamond等
+</code></pre><h4 id="2-拆分"><a href="#2-拆分" class="headerlink" title="2.拆分"></a>2.拆分</h4><pre><code>系统维度：按照系统功能、业务拆分，如购物车，结算，订单等
+
+功能维度：对系统功能在做细粒度拆分
+
+读写维度：根据读写比例特征拆分；读多，可考虑多级缓存；写多，可考虑分库分表
+
+AOP维度： 根据访问特征，按照AOP进行拆分，比如商品详情页可分为CDN、页面渲染系统，CDN就是一个AOP系统
+
+模块维度：对整体代码结构划分Web、Service、DAO
+</code></pre><h4 id="3-服务化"><a href="#3-服务化" class="headerlink" title="3.服务化"></a>3.服务化</h4><pre><code>服务化演进: 进程内服务-单机远程服务-集群手动注册服务-自动注册和发现服务-服务的分组、隔离、路由-服务治理
+
+考虑服务分组、隔离、限流、黑白名单、超时、重试机制、路由、故障补偿等
+
+实践：利用Nginx、HaProxy、LVS等实现负载均衡，ZooKeeper、Consul等实现自动注册和发现服
+</code></pre><h4 id="4-消息队列"><a href="#4-消息队列" class="headerlink" title="4.消息队列"></a>4.消息队列</h4><pre><code>目的: 服务解耦(一对多消费)、异步处理、流量削峰缓冲等
+
+大流量缓冲： 牺牲强一致性，保证最终一致性
+(案例：库存扣减，现在Redis中做扣减，记录扣减日志，通过后台进程将扣减日志应用到DB)
+</code></pre><p>数据校对: 解决异步消息机制下消息丢失问题</p>
+<h4 id="5-数据异构"><a href="#5-数据异构" class="headerlink" title="5.数据异构"></a>5.数据异构</h4><pre><code>数据异构: 通过消息队列机制接收数据变更，原子化存储
+
+数据闭环: 屏蔽多从数据来源，将数据异构存储，形成闭环
+</code></pre><h4 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h4><p>用户层:</p>
+<pre><code>DNS缓存
+
+浏览器DNS缓存
+
+操作系统DNS缓存
+
+本地DNS服务商缓存
+
+DNS服务器缓存
+
+客户端缓存
+
+浏览器缓存(Expires、Cache-Control、Last-Modified、Etag)
+
+App客户缓存(js/css/image...)
+</code></pre><p>代理层：</p>
+<pre><code>CDN缓存(一般基于ATS、Varnish、Nginx、Squid等构建,边缘节点-二级节点-中心节点-源站)
+</code></pre><p>接入层：</p>
+<pre><code>Opcache： 缓存PHP的Opcodes
+
+Proxy_cache： 代理缓存,可以存储到/dev/shm或者SSD
+
+FastCGI Cache
+
+Nginx+Lua+Redis: 业务数据缓存
+</code></pre><p>应用层：</p>
+<pre><code>页面静态化
+
+业务数据缓存(Redis/Memcached/本地文件等)
+
+消息队列
+</code></pre><p>数据层：</p>
+<pre><code>NoSQL： Redis、Memcache、SSDB等
+
+MySQL： Innodb/MyISAM等Query Cache、Key Cache、Innodb Buffer Size等
+</code></pre><p>系统层：</p>
+<pre><code>CPU : L1/L2/L3 Cache/NUMA
+</code></pre><p>内存</p>
+<pre><code>磁盘：磁盘本身缓存、dirtyratio/dirtybackground_ratio、阵列卡本身缓存
+</code></pre>
       
     </div>
     
@@ -500,7 +602,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生活闲谈/" rel="tag"># 生活闲谈</a>
+            <a href="/tags/系统设计/" rel="tag"># 系统设计</a>
           
         </div>
       
@@ -532,8 +634,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/03/http模拟登陆/" rel="next" title="http模拟登陆">
-                <i class="fa fa-chevron-left"></i> http模拟登陆
+              <a href="/2019/08/16/JAVA中的相等比较/" rel="next" title="JAVA中的相等比较">
+                <i class="fa fa-chevron-left"></i> JAVA中的相等比较
               </a>
             
           </div>
@@ -541,10 +643,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/10/jsp开发过程中的乱码问题及其解决方案/" rel="prev" title="jsp开发过程中的乱码问题及其解决方案">
-                jsp开发过程中的乱码问题及其解决方案 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">5</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高可用高并发系统设计"><span class="nav-number">1.</span> <span class="nav-text">高可用高并发系统设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构设计三大定律"><span class="nav-number">1.1.</span> <span class="nav-text">架构设计三大定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高可用"><span class="nav-number">1.2.</span> <span class="nav-text">高可用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计建议"><span class="nav-number">1.2.1.</span> <span class="nav-text">设计建议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-减少单点"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.减少单点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-减少依赖"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.减少依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-限制循环"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">3.限制循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-增加限流"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">4.增加限流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-控制流量"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">5.控制流量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-精准监控"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">6.精准监控</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-无状态"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">7.无状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-容量规划"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">8.容量规划</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-功能开关"><span class="nav-number">1.2.1.9.</span> <span class="nav-text">9.功能开关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-设置超时"><span class="nav-number">1.2.1.10.</span> <span class="nav-text">10.设置超时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-重试策略"><span class="nav-number">1.2.2.</span> <span class="nav-text">11.重试策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-隔离"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">12.隔离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-异步调用"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">13.异步调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-热点缓存"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">14.热点缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-缓存容灾"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">15.缓存容灾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-分级缓存"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">16.分级缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-系统分级"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">17.系统分级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-服务降级"><span class="nav-number">1.2.2.7.</span> <span class="nav-text">18.服务降级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-流量蓄洪"><span class="nav-number">1.2.2.8.</span> <span class="nav-text">19.流量蓄洪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-服务权重"><span class="nav-number">1.2.2.9.</span> <span class="nav-text">20.服务权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-依赖简化"><span class="nav-number">1.2.2.10.</span> <span class="nav-text">21.依赖简化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-弹性扩容"><span class="nav-number">1.2.2.11.</span> <span class="nav-text">22.弹性扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-灰度和回滚"><span class="nav-number">1.2.2.12.</span> <span class="nav-text">23.灰度和回滚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-减少远程调用"><span class="nav-number">1.2.2.13.</span> <span class="nav-text">24.减少远程调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-熔断机制"><span class="nav-number">1.2.2.14.</span> <span class="nav-text">25.熔断机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-运行时加载模块"><span class="nav-number">1.2.2.15.</span> <span class="nav-text">26.运行时加载模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-代码扫描"><span class="nav-number">1.2.3.</span> <span class="nav-text">27.代码扫描#</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#28-自动备份"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">28.自动备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#29-线上测压"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">29.线上测压</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高并发"><span class="nav-number">1.3.</span> <span class="nav-text">高并发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高并发设计有几个原则如下"><span class="nav-number">1.3.1.</span> <span class="nav-text">高并发设计有几个原则如下:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-无状态"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1.无状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-拆分"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2.拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-服务化"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3.服务化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-消息队列"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">4.消息队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-数据异构"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">5.数据异构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-缓存"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">6.缓存</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
