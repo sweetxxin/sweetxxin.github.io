@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f1636af5"
+    });
+  daovoice('update');
+  </script>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cat32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/cat16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,jvm," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java虚拟机垃圾回收(二) 垃圾回收算法在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。 下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应">
+<meta name="keywords" content="java,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java虚拟机垃圾回收(二) 垃圾回收算法">
+<meta property="og:url" content="http://github.sweetxxin.top/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/index.html">
+<meta property="og:site_name" content="SweetXxin">
+<meta property="og:description" content="Java虚拟机垃圾回收(二) 垃圾回收算法在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。 下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20170102221608888">
+<meta property="og:image" content="https://img-blog.csdn.net/20170102221609161">
+<meta property="og:image" content="https://img-blog.csdn.net/20170102221609513">
+<meta property="og:image" content="https://img-blog.csdn.net/20170102221610020">
+<meta property="og:image" content="https://img-blog.csdn.net/20170102221610685">
+<meta property="og:updated_time" content="2019-09-21T12:23:40.225Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java虚拟机垃圾回收(二) 垃圾回收算法">
+<meta name="twitter:description" content="Java虚拟机垃圾回收(二) 垃圾回收算法在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。 下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170102221608888">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://github.sweetxxin.top/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/"/>
+
+
+
+
+
+  <title>Java虚拟机垃圾回收(二) 垃圾回收算法 | SweetXxin</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?66735b1fcb134da01e1fb8bd95bc8899";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SweetXxin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一见倾心,从一而终</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sweet Xxin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SweetXxin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java虚拟机垃圾回收(二) 垃圾回收算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T20:20:19+08:00">
+                2019-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/垃圾回收/" itemprop="url" rel="index">
+                    <span itemprop="name">垃圾回收</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/垃圾回收/垃圾回收算法/" itemprop="url" rel="index">
+                    <span itemprop="name">垃圾回收算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/09/21/Java虚拟机垃圾回收-二-垃圾回收算法/" class="leancloud_visitors" data-flag-title="Java虚拟机垃圾回收(二) 垃圾回收算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,593
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java虚拟机垃圾回收-二-垃圾回收算法"><a href="#Java虚拟机垃圾回收-二-垃圾回收算法" class="headerlink" title="Java虚拟机垃圾回收(二) 垃圾回收算法"></a>Java虚拟机垃圾回收(二) 垃圾回收算法</h1><p>在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。</p>
+<pre><code>下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应用场景。
+</code></pre><h2 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h2><pre><code>标记-清除（Mark-Sweep）算法是一种基础的收集算法。
+</code></pre><p>1、算法思路</p>
+<pre><code>&quot;标记-清除&quot;算法，分为两个阶段：
+</code></pre><p>（A）、标记</p>
+<pre><code>首先标记出所有需要回收的对象；
+
+ 标记过程如《Java虚拟机垃圾回收(一) 基础》&quot;2-4、判断对象生存还是死亡&quot;中所述--分为两个标记过程（详细请参考前文）：
+</code></pre><p>（1）、第一次标记</p>
+<pre><code>在可达性分析后发现对象到GC Roots没有任何引用链相连时，被第一次标记；
+
+并且进行一次筛选：此对象是否必要执行finalize()方法；
+
+对有必要执行finalize()方法的对象，被放入F-Queue队列中；    
+</code></pre><p>（2）、第二次标记</p>
+<pre><code>GC将对F-Queue队列中的对象进行第二次小规模标记；
+
+在其finalize()方法中重新与引用链上任何一个对象建立关联，第二次标记时会将其移出&quot;即将回收&quot;的集合；
+
+对第一次被标记，且第二次还被标记（如果需要，但没有移出&quot;即将回收&quot;的集合），就可以认为对象已死，可以进行回收。
+</code></pre><p>（B）、清除</p>
+<pre><code>两次标记后，还在&quot;即将回收&quot;集合的对象将被统一回收；
+
+ 执行过程如下图：
+</code></pre><p><img src="https://img-blog.csdn.net/20170102221608888" alt=""></p>
+<p>2、优点</p>
+<pre><code>基于最基础的可达性分析算法，它是最基础的收集算法；
+
+而后续的收集算法都是基于这种思路并对其不足进行改进得到的；
+</code></pre><p>3、缺点</p>
+<pre><code>主要有两个缺点：
+</code></pre><p>（A）、效率问题</p>
+<pre><code>标记和清除两个过程的效率都不高；
+</code></pre><p>（B）、空间问题</p>
+<pre><code>标记清除后会产生大量不连续的内存碎片；
+
+这会导致分配大内存对象时，无法找到足够的连续内存；
+
+从而需要提前触发另一次垃圾收集动作；
+</code></pre><p>4、应用场景</p>
+<pre><code>针对老年代的CMS收集器；
+</code></pre><h2 id="复制算法算法"><a href="#复制算法算法" class="headerlink" title="复制算法算法"></a>复制算法算法</h2><p>“复制”（Copying）收集算法，为了解决标记-清除算法的效率问题；</p>
+<p>1、算法思路</p>
+<pre><code> （A）、把内存划分为大小相等的两块，每次只使用其中一块；
+
+ （B）、当一块内存用完了，就将还存活的对象复制到另一块上（而后使用这一块）；
+
+ （C）、再把已使用过的那块内存空间一次清理掉，而后重复步骤2；    
+
+执行过程如下图：
+</code></pre><p><img src="https://img-blog.csdn.net/20170102221609161" alt=""></p>
+<p>2、优点</p>
+<pre><code> 这使得每次都是只对整个半区进行内存回收；
+
+ 内存分配时也不用考虑内存碎片等问题（可使用&quot;指针碰撞&quot;的方式分配内存）；
+
+实现简单，运行高效；
+
+ （关于&quot;指针碰撞&quot;请参考《Java对象在HotSpot虚拟机中的创建过程》）
+</code></pre><p>3、缺点</p>
+<p>（A）、空间浪费</p>
+<pre><code>可用内存缩减为原来的一半，太过浪费（解决：可以改良，不按1:1比例划分）；
+</code></pre><p>（B）、效率随对象存活率升高而变低</p>
+<pre><code>当对象存活率较高时，需要进行较多复制操作，效率将会变低（解决：后面的标记-整理算法）；
+</code></pre><p>4、应用场景</p>
+<pre><code>现在商业JVM都采用这种算法（通过改良缺点1）来回收新生代；
+
+如Serial收集器、ParNew收集器、Parallel Scavenge收集器、、G1（从局部看）；
+</code></pre><p>5、HotSpot虚拟机的改良算法</p>
+<p>（A）、弱代理论</p>
+<pre><code>分代垃圾收集基于弱代理论（weak generational hypothesis），具体描述如下：
+
+（1）、大多数分配了内存的对象并不会存活太长时间，在处于年轻代时就会死掉；
+
+（2）、很少有对象会从老年代变成年轻代；
+
+其中IBM研究表明：新生代中98%的对象都是&quot;朝生夕死&quot;；
+
+ 所以并不需要按1:1比例来划分内存（解决了缺点1）；
+</code></pre><p>（B）、HotSpot虚拟机新生代内存布局及算法</p>
+<pre><code>             （1）、将新生代内存分为一块较大的Eden空间和两块较小的Survivor空间；
+
+             （2）、每次使用Eden和其中一块Survivor；
+
+             （3）、当回收时，将Eden和使用中的Survivor中还存活的对象一次性复制到另外一块Survivor；
+
+             （4）、而后清理掉Eden和使用过的Survivor空间；
+
+             （5）、后面就使用Eden和复制到的那一块Survivor空间，重复步骤3；
+
+默认Eden：Survivor=8:1，即每次可以使用90%的空间，只有一块Survivor的空间被浪费；
+</code></pre><p>（C）、分配担保</p>
+<pre><code>如果另一块Survivor空间没有足够空间存放上一次新生代收集下来的存活对象时，这些对象将直接通过分配担保机制（Handle Promotion）进入老年代；
+
+分配担保在以后讲解垃圾收集器执行规则时再详解；
+</code></pre><h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h3><p> “标记-整理”（Mark-Compact）算法是根据老年代的特点提出的。</p>
+<p>1、算法思路</p>
+<p>（1）、标记</p>
+<pre><code>标记过程与&quot;标记-清除&quot;算法一样；
+</code></pre><p>（2）、整理</p>
+<pre><code>但后续不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动；
+
+然后直接清理掉端边界以外的内存；
+</code></pre><p>执行过程如下图：</p>
+<p><img src="https://img-blog.csdn.net/20170102221609513" alt=""></p>
+<p>2、优点</p>
+<p>（A）、不会像复制算法，效率随对象存活率升高而变低</p>
+<pre><code>老年代特点：
+
+对象存活率高，没有额外的空间可以分配担保；
+
+所以老年代一般不能直接选用复制算法算法；
+
+而选用标记-整理算法；
+</code></pre><p>（B）、不会像标记-清除算法，产生内存碎片</p>
+<pre><code>因为清除前，进行了整理，存活对象都集中到空间一侧；
+</code></pre><p>3、缺点</p>
+<pre><code>主要是效率问题：除像标记-清除算法的标记过程外，还多了需要整理的过程，效率更低；
+</code></pre><p>4、应用场景</p>
+<pre><code> 很多垃圾收集器采用这种算法来回收老年代；
+
+如Serial Old收集器、G1（从整体看）；
+</code></pre><h2 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h2><p> “分代收集”（Generational Collection）算法结合不同的收集算法处理不同区域。</p>
+<p>1、算法思路</p>
+<pre><code>基于前面说的弱代理论，其实并没有什么新的思想；
+
+只是根据对象存活周期的不同将内存划分为几块；
+
+这样就可以根据各个年代的特点采用最适当的收集算法；
+
+一般把Java堆分为新生代和老年代；
+</code></pre><p>（A）、新生代</p>
+<pre><code>每次垃圾收集都有大批对象死去，只有少量存活；
+
+所以可采用复制算法；
+</code></pre><p>（B）、老年代</p>
+<pre><code> 对象存活率高，没有额外的空间可以分配担保；
+
+使用&quot;标记-清理&quot;或&quot;标记-整理&quot;算法；
+
+结合上面对新生代的内存划分介绍和上篇文章对Java堆的介绍，可以得出HotSpot虚拟机一般的年代内存划分，如下图：
+</code></pre><p><img src="https://img-blog.csdn.net/20170102221610020" alt=""></p>
+<p>2、优点      </p>
+<pre><code>可以根据各个年代的特点采用最适当的收集算法；
+</code></pre><p>3、缺点      </p>
+<pre><code>仍然不能控制每次垃圾收集的时间；
+</code></pre><p>4、应用场景</p>
+<pre><code>目前几乎所有商业虚拟机的垃圾收集器都采用分代收集算法；
+
+如HotSpot虚拟机中全部垃圾收集器：Serial、ParNew、Parallel Scavenge、Serial Old、Parallel Old、CMS、G1（也保留）；
+</code></pre><h2 id="火车算法"><a href="#火车算法" class="headerlink" title="火车算法"></a>火车算法</h2><p> 火车算法也称列车算法，是一种更彻底的分区域处理收集算法，是对分代收集算法的一个有力补充。</p>
+<p>1、算法思路</p>
+<pre><code>在火车算法中，内存被分为块，多个块组成一个集合。为了形象化，一节车厢代表一个块，一列火车代表一个集合，如下图；
+
+火车与车箱都按创建顺序标号，每个车厢大小相等，但每个火车包含的车厢数不一定相等；
+
+每节车箱有一个被记忆集合，而每辆火车的记忆集合是它所有车厢记忆集合的总和；
+
+记忆集合由指向车箱中对象的引用组成，这些引用来自同一辆火车中序号较高的车箱中的对象，以及序号较高中的对象；
+
+垃圾收集以车厢为单位，整体算法流程如下：
+</code></pre><p>（1）、选择标号最小的火车；</p>
+<p>（2）、如果火车的记忆集合是空的, 释放整列火车并终止, 否则进行第三步操作；</p>
+<p>（3）、选择火车中标号最小的车厢；</p>
+<p>（4）、对于车厢记忆集合的每个元素：</p>
+<pre><code>如果它是一个被根引用引用的对象, 那么, 将拷贝到一列新的火车中去；
+
+如果是一个被其它火车的对象指向的对象, 那么, 将它拷贝到这个指向它的火车中去.；
+
+假设有一些对象已经被保留下来了, 那么通过这些对象可以触及到的对象将会被拷贝到同一列火车中去；
+
+如果一个对象被来自多个火车的对象引用, 那么它可以被拷贝到任意一个火车去；
+
+这个步骤中, 有必要对受影响的引用集合进行相应地更新；
+</code></pre><p>（5）、释放车厢并且终止；</p>
+<p>  执行过程如下图：<br><img src="https://img-blog.csdn.net/20170102221610685" alt=""></p>
+<p>2、优点</p>
+<pre><code>可以在成熟对象空间提供限定时间的渐近收集；
+
+而不需要每次都进行一个大区域的垃圾回收过程；
+
+即可以控制垃圾回收的时间，在指定时间内进行一些小区域的回收；
+</code></pre><p>3、缺点</p>
+<pre><code>实现较为复杂，如采用类似的算法的G1收集器在JDK7才实现；
+
+一些场景下可能性价比不高；
+</code></pre><p>4、应用场景<br>JDK7后HotSpot虚拟机G1收集器采用类似的算法，能建立可预测的停顿时间模型；</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+    <div>
+      
+        <div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+
+</div>
+      
+    </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/21/Java虚拟机垃圾回收-一-基础/" rel="next" title="Java虚拟机垃圾回收(一)基础">
+                <i class="fa fa-chevron-left"></i> Java虚拟机垃圾回收(一)基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/21/Java虚拟机垃圾回收-三-7种垃圾收集器/" rel="prev" title="Java虚拟机垃圾回收(三)7种垃圾收集器">
+                Java虚拟机垃圾回收(三)7种垃圾收集器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me2.jpg"
+                alt="Sweet Xxin" />
+            
+              <p class="site-author-name" itemprop="name">Sweet Xxin</p>
+              <p class="site-description motion-element" itemprop="description">虽平凡，但热爱，开发之路且行且珍惜</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sweetxxin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1032130941@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java虚拟机垃圾回收-二-垃圾回收算法"><span class="nav-number">1.</span> <span class="nav-text">Java虚拟机垃圾回收(二) 垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记-清除算法"><span class="nav-number">1.1.</span> <span class="nav-text">标记-清除算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制算法算法"><span class="nav-number">1.2.</span> <span class="nav-text">复制算法算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-整理算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">标记-整理算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代收集算法"><span class="nav-number">1.3.</span> <span class="nav-text">分代收集算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#火车算法"><span class="nav-number">1.4.</span> <span class="nav-text">火车算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sweet Xxin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'pJirsYah4Glivpgq2gFdUJjG-gzGzoHsz',
+        appKey: 'YVmuLWnwMxwSY89f65sitwA1',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("pJirsYah4Glivpgq2gFdUJjG-gzGzoHsz", "YVmuLWnwMxwSY89f65sitwA1");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Reddit, Delicious,StumbleUpon,Pinterest,Facebook,GooglePlus,Slashdot, Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine, Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 13417,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+  
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
