@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20170102221609513">
 <meta property="og:image" content="https://img-blog.csdn.net/20170102221610020">
 <meta property="og:image" content="https://img-blog.csdn.net/20170102221610685">
-<meta property="og:updated_time" content="2019-09-21T12:23:40.225Z">
+<meta property="og:updated_time" content="2019-09-22T05:22:31.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机垃圾回收(二) 垃圾回收算法">
 <meta name="twitter:description" content="Java虚拟机垃圾回收(二) 垃圾回收算法在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。 下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应">
@@ -488,8 +488,8 @@
 
       
         <h1 id="Java虚拟机垃圾回收-二-垃圾回收算法"><a href="#Java虚拟机垃圾回收-二-垃圾回收算法" class="headerlink" title="Java虚拟机垃圾回收(二) 垃圾回收算法"></a>Java虚拟机垃圾回收(二) 垃圾回收算法</h1><p>在《Java虚拟机垃圾回收(一) 基础》中了解到如何判断对象是存活还是已经死亡？ 介绍了垃圾回收基础算法：引用计数算法、可达性分析算法，以及HotSpot虚拟机中实现对象可达性分析的一些问题。</p>
-<pre><code>下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应用场景。
-</code></pre><h2 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h2><pre><code>标记-清除（Mark-Sweep）算法是一种基础的收集算法。
+<p>下面先来了解Java虚拟机垃圾回收的几种常见算法：标记-清除算法、复制算法、标记-整理算法、分代收集算法、火车算法，介绍它们的算法思路，有什么优点和缺点，以及主要应用场景。</p>
+<h2 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h2><pre><code>标记-清除（Mark-Sweep）算法是一种基础的收集算法。
 </code></pre><p>1、算法思路</p>
 <pre><code>&quot;标记-清除&quot;算法，分为两个阶段：
 </code></pre><p>（A）、标记</p>
@@ -1033,8 +1033,6 @@
   
 
 
-  
-
 
 
 
@@ -1073,11 +1071,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1668,10 +1661,6 @@
   
 
   
-  
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
   
   <link rel="stylesheet" href="/dist/APlayer.min.css">
 <div id="aplayer"></div>

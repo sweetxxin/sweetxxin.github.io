@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/20170102213856592">
 <meta property="og:image" content="https://img-blog.csdn.net/20170102213857043">
-<meta property="og:updated_time" content="2019-09-21T12:23:27.038Z">
+<meta property="og:updated_time" content="2019-09-22T05:22:08.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机垃圾回收(一)基础">
 <meta name="twitter:description" content="Java虚拟机垃圾回收(一)基础回收哪些内存/对象 引用计数算法 可达性分析算法 finalize()方法 HotSpot实现分析 Java虚拟机垃圾回收 垃圾回收，或称垃圾收集（Garbage Collection，GC）是指自动管理回收不再被引用的内存数据。 在1960年诞生于MIT的Lisp语言首次使用了动态内存分配和垃圾收集技术，可以实现垃圾回收的一个基本要求是语言是类型安全的，现在使用的">
@@ -486,8 +486,8 @@
       
         <h1 id="Java虚拟机垃圾回收-一-基础"><a href="#Java虚拟机垃圾回收-一-基础" class="headerlink" title="Java虚拟机垃圾回收(一)基础"></a>Java虚拟机垃圾回收(一)基础</h1><p>回收哪些内存/对象 引用计数算法 可达性分析算法 finalize()方法 HotSpot实现分析</p>
 <h2 id="Java虚拟机垃圾回收"><a href="#Java虚拟机垃圾回收" class="headerlink" title="Java虚拟机垃圾回收"></a>Java虚拟机垃圾回收</h2><p> 垃圾回收，或称垃圾收集（Garbage Collection，GC）是指自动管理回收不再被引用的内存数据。</p>
-<pre><code>在1960年诞生于MIT的Lisp语言首次使用了动态内存分配和垃圾收集技术，可以实现垃圾回收的一个基本要求是语言是类型安全的，现在使用的包括Java、Perl、ML等。
-</code></pre><h3 id="为什么需要了解垃圾回收"><a href="#为什么需要了解垃圾回收" class="headerlink" title="为什么需要了解垃圾回收"></a>为什么需要了解垃圾回收</h3><p>目前内存的动态分配与内存回收技术已经相当成熟，但为什么还需要去了解内存分配与GC呢？</p>
+<p>在1960年诞生于MIT的Lisp语言首次使用了动态内存分配和垃圾收集技术，可以实现垃圾回收的一个基本要求是语言是类型安全的，现在使用的包括Java、Perl、ML等。</p>
+<h3 id="为什么需要了解垃圾回收"><a href="#为什么需要了解垃圾回收" class="headerlink" title="为什么需要了解垃圾回收"></a>为什么需要了解垃圾回收</h3><p>目前内存的动态分配与内存回收技术已经相当成熟，但为什么还需要去了解内存分配与GC呢？</p>
 <pre><code>1、当需要排查各种内存溢出、内存泄漏问题时；
 
 2、当垃圾收集成为系统达到更高并发量的瓶颈时；
@@ -732,8 +732,8 @@ Stop The World：
 
 否则必须等待，直到收到可以安全离开Safe Region的信号通知；    
 </code></pre><p>这样就不会影响标记结果；</p>
-<pre><code>虽然HotSpot虚拟机中采用了这些方法来解决对象可达性分析的问题，但只是大大减少了这些问题影响，并不能完全解决，如GC停顿&quot;Stop The World&quot;是垃圾回收重点关注的问题，后面介绍垃圾回收器时应注意：低GC停顿是其一个关注。
-</code></pre>
+<p>虽然HotSpot虚拟机中采用了这些方法来解决对象可达性分析的问题，但只是大大减少了这些问题影响，并不能完全解决，如GC停顿”Stop The World”是垃圾回收重点关注的问题，后面介绍垃圾回收器时应注意：低GC停顿是其一个关注。</p>
+
       
     </div>
     
@@ -1091,8 +1091,6 @@ Stop The World：
   
 
 
-  
-
 
 
 
@@ -1131,11 +1129,6 @@ Stop The World：
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -1726,10 +1719,6 @@ Stop The World：
   
 
   
-  
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
   
   <link rel="stylesheet" href="/dist/APlayer.min.css">
 <div id="aplayer"></div>
