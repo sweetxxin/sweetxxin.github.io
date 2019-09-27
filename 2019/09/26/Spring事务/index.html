@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="java," />
+  <meta name="keywords" content="java,spring," />
 
 
 
@@ -94,18 +94,24 @@
 
 
 
-<meta name="description" content="使用java作为后台语言，实现带验证码的模拟登陆。采用springboot快速开发。简单而言，过程分两步 一、获取验证码图片通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。 如下获取验证码图片函数 private void getImg(HttpServletResponse response){    HttpGet g">
-<meta name="keywords" content="java">
+<meta name="description" content="Spring事务Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为。这是Spring为我们提供的强大的工具箱，使用事务传播行可以为我们的开发工作提供许多便利。但是人们对他的误解也颇多，你一定也听过“service方法事务最好不要嵌套”的传言。要想正确的使用工具首先需要了解工">
+<meta name="keywords" content="java,spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="http模拟登陆">
-<meta property="og:url" content="http://github.sweetxxin.top/2018/09/03/http模拟登陆/index.html">
+<meta property="og:title" content="Spring事务">
+<meta property="og:url" content="http://github.sweetxxin.top/2019/09/26/Spring事务/index.html">
 <meta property="og:site_name" content="SweetXxin">
-<meta property="og:description" content="使用java作为后台语言，实现带验证码的模拟登陆。采用springboot快速开发。简单而言，过程分两步 一、获取验证码图片通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。 如下获取验证码图片函数 private void getImg(HttpServletResponse response){    HttpGet g">
+<meta property="og:description" content="Spring事务Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为。这是Spring为我们提供的强大的工具箱，使用事务传播行可以为我们的开发工作提供许多便利。但是人们对他的误解也颇多，你一定也听过“service方法事务最好不要嵌套”的传言。要想正确的使用工具首先需要了解工">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-03T07:35:34.591Z">
+<meta property="og:image" content="https://img-blog.csdn.net/20170420212829825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170420213050220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170420213308563?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170420213400079?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170420213432872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-09-26T14:37:38.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="http模拟登陆">
-<meta name="twitter:description" content="使用java作为后台语言，实现带验证码的模拟登陆。采用springboot快速开发。简单而言，过程分两步 一、获取验证码图片通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。 如下获取验证码图片函数 private void getImg(HttpServletResponse response){    HttpGet g">
+<meta name="twitter:title" content="Spring事务">
+<meta name="twitter:description" content="Spring事务Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为。这是Spring为我们提供的强大的工具箱，使用事务传播行可以为我们的开发工作提供许多便利。但是人们对他的误解也颇多，你一定也听过“service方法事务最好不要嵌套”的传言。要想正确的使用工具首先需要了解工">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170420212829825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -135,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://github.sweetxxin.top/2018/09/03/http模拟登陆/"/>
+  <link rel="canonical" href="http://github.sweetxxin.top/2019/09/26/Spring事务/"/>
 
 
 
 
 
-  <title>http模拟登陆 | SweetXxin</title>
+  <title>Spring事务 | SweetXxin</title>
   
 
 
@@ -322,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2018/09/03/http模拟登陆/">
+    <link itemprop="mainEntityOfPage" href="http://github.sweetxxin.top/2019/09/26/Spring事务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sweet Xxin">
@@ -339,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">http模拟登陆</h1>
+          <h1 class="post-title" itemprop="name headline">Spring事务</h1>
         
 
         <div class="post-meta">
@@ -351,8 +357,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-03T14:25:44+08:00">
-                2018-09-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-26T22:35:55+08:00">
+                2019-09-26
               </time>
             
 
@@ -374,8 +380,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
+                  <a href="/categories/spring事务传播/" itemprop="url" rel="index">
+                    <span itemprop="name">spring事务传播</span>
                   </a>
                 </span>
 
@@ -392,8 +398,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/03/http模拟登陆/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/09/03/http模拟登陆/" itemprop="commentCount"></span>
+                <a href="/2019/09/26/Spring事务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/26/Spring事务/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -401,7 +407,7 @@
 
           
           
-             <span id="/2018/09/03/http模拟登陆/" class="leancloud_visitors" data-flag-title="http模拟登陆">
+             <span id="/2019/09/26/Spring事务/" class="leancloud_visitors" data-flag-title="Spring事务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,7 +439,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  491
+                  3,501
                 </span>
               
 
@@ -449,7 +455,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  13
                 </span>
               
             </div>
@@ -470,44 +476,195 @@
       
 
       
-        <p>使用java作为后台语言，实现带验证码的模拟登陆。采用springboot快速开发。<br>简单而言，过程分两步</p>
-<h2 id="一、获取验证码图片"><a href="#一、获取验证码图片" class="headerlink" title="一、获取验证码图片"></a>一、获取验证码图片</h2><p>通过抓包工具如fiddler等，或者直接在浏览器控制台找到获取验证码图片的url。然后后台发起http请求，拿到图片并展示。<br> 如下获取验证码图片函数</p>
-<pre><code>private void getImg(HttpServletResponse response){
-   HttpGet get = new HttpGet(&quot;验证码的url&quot;);
-   try {
-       CloseableHttpResponse res = client.execute(get);
-       HttpEntity entity = res.getEntity();
-       OutputStream out = response.getOutputStream();
-       byte[] buffer = new byte[1024];
-       int end;
-       while ((end=entity.getContent().read(buffer))!=-1){
-           out.write(buffer);
-       }
-       out.close();
-       response.setContentType(&quot;image/jpeg&quot;);//设置相应类型,告诉浏览器输出的内容为图片
-       response.setHeader(&quot;Pragma&quot;, &quot;No-cache&quot;);//设置响应头信息，告诉浏览器不要缓存此内容
-       response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache&quot;);
-       response.setDateHeader(&quot;Expire&quot;, 0);
-       // 将内存中的图片通过流动形式输出到客户端
-   } catch (IOException e) {
-       e.printStackTrace();
-   }
-</code></pre><h2 id="二、模拟登陆"><a href="#二、模拟登陆" class="headerlink" title="二、模拟登陆"></a>二、模拟登陆</h2><p>通过抓包工具如fiddler等，或者直接在浏览器控制台拿到模拟登陆所需要的参数的键值，后台拼接参数后向对应的路径发送请求，一般是post请求，就能正常模拟登陆成功了。</p>
-<pre><code>public void doLogin(@RequestParam(&quot;stuid&quot;)String stuid,
-                     @RequestParam(&quot;password&quot;)String password,
-                      @RequestParam(&quot;code&quot;) String code,
-                      HttpServletResponse response2) throws IOException {
-    HttpPost post = new HttpPost(&quot;登陆的url&quot;);
-    //装填参数
-    List&lt;NameValuePair&gt; nvps = new ArrayList&lt;NameValuePair&gt;();
-    nvps.add(new BasicNameValuePair(&quot;参数1&quot;,&quot;值1&quot;));
-    nvps.add(new BasicNameValuePair(&quot;参数1&quot;,&quot;值2&quot; ));
-    post.setEntity(new UrlEncodedFormEntity(nvps, &quot;UTF-8&quot;));
-    post.setHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-    post.setHeader(&quot;User-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)&quot;);
-    CloseableHttpResponse response = client.execute(post);
-    response.close();
-</code></pre><h2 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h2><p>模拟难点在于控制cookie的一致，或者说要保证获取验证码时的会话要跟提交参数登陆时的会话保持一致，这样保证验证码是正确的。代码中httpclicent对象最好是全局变量，这样会自动帮我们维持cookie的一致性（同一对象等价于同一个cookie)</p>
+        <h1 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h1><p>Spring在TransactionDefinition接口中规定了7种类型的事务传播行为。事务传播行为是Spring框架独有的事务增强特性，他不属于的事务实际提供方数据库行为。这是Spring为我们提供的强大的工具箱，使用事务传播行可以为我们的开发工作提供许多便利。但是人们对他的误解也颇多，你一定也听过“service方法事务最好不要嵌套”的传言。要想正确的使用工具首先需要了解工具。本文对七种事务传播行为做详细介绍，内容主要代码示例的方式呈现。</p>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="什么是事务传播行为？"><a href="#什么是事务传播行为？" class="headerlink" title="什么是事务传播行为？"></a>什么是事务传播行为？</h3><p>事务传播行为用来描述由某一个事务传播行为修饰的方法被嵌套进另一个方法的时事务如何传播。</p>
+<p>用伪代码说明：</p>
+<pre><code>public void methodA(){
+methodB();
+//doSomething
+}
+
+@Transaction(Propagation=XXX)
+public void methodB(){
+//doSomething
+}
+</code></pre><p>代码中methodA()方法嵌套调用了methodB()方法，methodB()的事务传播行为由@Transaction(Propagation=XXX)设置决定。这里需要注意的是methodA()并没有开启事务，某一个事务传播行为修饰的方法并不是必须要在开启事务的外围方法中调用。</p>
+<h3 id="事务的7种传播级别"><a href="#事务的7种传播级别" class="headerlink" title="事务的7种传播级别"></a>事务的7种传播级别</h3><p><img src="https://img-blog.csdn.net/20170420212829825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="PROPAGATION-REQUIRED"><a href="#PROPAGATION-REQUIRED" class="headerlink" title="PROPAGATION_REQUIRED"></a>PROPAGATION_REQUIRED</h4><p>如果存在一个事务，则支持当前事务。如果没有事务则开启一个新的事务。<br>可以把事务想像成一个胶囊，在这个场景下方法B用的是方法A产生的胶囊（事务）。 </p>
+<p><img src="https://img-blog.csdn.net/20170420213050220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<pre><code>@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+    methodB();
+// do something
+}
+
+@Transactional(propagation = Propagation.REQUIRED)
+    public void methodB() {
+// do something
+}
+</code></pre><p>单独调用methodB方法时，因为当前上下文不存在事务，所以会开启一个新的事务。<br>调用methodA方法时，因为当前上下文不存在事务，所以会开启一个新的事务。当执行到methodB时，methodB发现当前上下文有事务，因此就加入到当前事务中来。</p>
+<h4 id="PROPAGATION-SUPPORTS"><a href="#PROPAGATION-SUPPORTS" class="headerlink" title="PROPAGATION_SUPPORTS"></a>PROPAGATION_SUPPORTS</h4><p>如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。但是对于事务同步的事务管理器，PROPAGATION_SUPPORTS与不使用事务有少许不同。<br>举例有两个方法：</p>
+<pre><code>@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+methodB();
+// do something
+}
+
+// 事务属性为SUPPORTS
+@Transactional(propagation = Propagation.SUPPORTS)
+public void methodB() {
+    // do something
+}
+</code></pre><p>单纯的调用methodB时，methodB方法是非事务的执行的。当调用methdA时,methodB则加入了methodA的事务中,事务地执行。</p>
+<h4 id="PROPAGATION-MANDATORY"><a href="#PROPAGATION-MANDATORY" class="headerlink" title="PROPAGATION_MANDATORY"></a>PROPAGATION_MANDATORY</h4><p>如果已经存在一个事务，支持当前事务。如果没有一个活动的事务，则抛出异常。</p>
+<pre><code>@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+methodB();
+// do something
+}
+
+// 事务属性为MANDATORY
+@Transactional(propagation = Propagation.MANDATORY)
+public void methodB() {
+    // do something
+
+}
+</code></pre><p>当单独调用methodB时，因为当前没有一个活动的事务，则会抛出异常throw new IllegalTransactionStateException(“Transaction propagation ‘mandatory’ but no existing transaction found”);当调用methodA时，methodB则加入到methodA的事务中，事务地执行。</p>
+<h4 id="PROPAGATION-REQUIRES-NEW"><a href="#PROPAGATION-REQUIRES-NEW" class="headerlink" title="PROPAGATION_REQUIRES_NEW"></a>PROPAGATION_REQUIRES_NEW</h4><p><img src="https://img-blog.csdn.net/20170420213308563?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>使用PROPAGATION_REQUIRES_NEW,需要使用 JtaTransactionManager作为事务管理器。<br>它会开启一个新的事务。如果一个事务已经存在，则先将这个存在的事务挂起。</p>
+<pre><code>@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+doSomeThingA();
+methodB();
+doSomeThingB();
+// do something else
+}
+
+
+// 事务属性为REQUIRES_NEW
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void methodB() {
+// do something
+}
+</code></pre><p>当调用</p>
+<p>main{<br>methodA();<br>}</p>
+<p>相当于调用</p>
+<pre><code>main(){
+TransactionManager tm = null;
+try{
+    //获得一个JTA事务管理器
+    tm = getTransactionManager();
+    tm.begin();//开启一个新的事务
+    Transaction ts1 = tm.getTransaction();
+    doSomeThing();
+    tm.suspend();//挂起当前事务
+    try{
+        tm.begin();//重新开启第二个事务
+        Transaction ts2 = tm.getTransaction();
+        methodB();
+        ts2.commit();//提交第二个事务
+    } Catch(RunTimeException ex) {
+        ts2.rollback();//回滚第二个事务
+    } finally {
+        //释放资源
+    }
+    //methodB执行完后，恢复第一个事务
+    tm.resume(ts1);
+    doSomeThingB();
+    ts1.commit();//提交第一个事务
+} catch(RunTimeException ex) {
+    ts1.rollback();//回滚第一个事务
+} finally {
+    //释放资源
+}
+}
+</code></pre><p>在这里，我把ts1称为外层事务，ts2称为内层事务。从上面的代码可以看出，ts2与ts1是两个独立的事务，互不相干。Ts2是否成功并不依赖于 ts1。如果methodA方法在调用methodB方法后的doSomeThingB方法失败了，而methodB方法所做的结果依然被提交。而除了 methodB之外的其它代码导致的结果却被回滚了</p>
+<h4 id="PROPAGATION-NOT-SUPPORTED"><a href="#PROPAGATION-NOT-SUPPORTED" class="headerlink" title="PROPAGATION_NOT_SUPPORTED"></a>PROPAGATION_NOT_SUPPORTED</h4><p>PROPAGATION_NOT_SUPPORTED 总是非事务地执行，并挂起任何存在的事务。使用PROPAGATION_NOT_SUPPORTED,也需要使用JtaTransactionManager作为事务管理器。</p>
+<p><img src="https://img-blog.csdn.net/20170420213400079?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h4 id="PROPAGATION-NEVER"><a href="#PROPAGATION-NEVER" class="headerlink" title="PROPAGATION_NEVER"></a>PROPAGATION_NEVER</h4><p>总是非事务地执行，如果存在一个活动事务，则抛出异常。</p>
+<h4 id="PROPAGATION-NESTED"><a href="#PROPAGATION-NESTED" class="headerlink" title="PROPAGATION_NESTED"></a>PROPAGATION_NESTED</h4><p><img src="https://img-blog.csdn.net/20170420213432872?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc29vbmZseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>如果一个活动的事务存在，则运行在一个嵌套的事务中。 如果没有活动事务, 则按TransactionDefinition.PROPAGATION_REQUIRED 属性执行。<br>这是一个嵌套事务,使用JDBC 3.0驱动时,仅仅支持DataSourceTransactionManager作为事务管理器。<br>需要JDBC 驱动的java.sql.Savepoint类。使用PROPAGATION_NESTED，还需要把PlatformTransactionManager的nestedTransactionAllowed属性设为true(属性值默认为false)。</p>
+<p>这里关键是嵌套执行。</p>
+<pre><code>@Transactional(propagation = Propagation.REQUIRED)
+methodA(){
+doSomeThingA();
+methodB();
+doSomeThingB();
+}
+
+@Transactional(propagation = Propagation.NEWSTED)
+methodB(){
+  ……
+}
+</code></pre><p>如果单独调用methodB方法，则按REQUIRED属性执行。如果调用methodA方法，相当于下面的效果：</p>
+<pre><code>main(){
+Connection con = null;
+Savepoint savepoint = null;
+try{
+    con = getConnection();
+    con.setAutoCommit(false);
+    doSomeThingA();
+    savepoint = con2.setSavepoint();
+    try{
+        methodB();
+    } catch(RuntimeException ex) {
+        con.rollback(savepoint);
+    } finally {
+        //释放资源
+    }
+    doSomeThingB();
+    con.commit();
+} catch(RuntimeException ex) {
+    con.rollback();
+} finally {
+    //释放资源
+}
+}
+</code></pre><p>当methodB方法调用之前，调用setSavepoint方法，保存当前的状态到savepoint。如果methodB方法调用失败，则恢复到之前保存的状态。但是需要注意的是，这时的事务并没有进行提交，如果后续的代码(doSomeThingB()方法)调用失败，则回滚包括methodB方法的所有操作。嵌套事务一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。</p>
+<h4 id="PROPAGATION-NESTED-与PROPAGATION-REQUIRES-NEW的区别"><a href="#PROPAGATION-NESTED-与PROPAGATION-REQUIRES-NEW的区别" class="headerlink" title="PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:"></a>PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:</h4><p>它们非常类似,都像一个嵌套事务，如果不存在一个活动的事务，都会开启一个新的事务。<br>使用 PROPAGATION_REQUIRES_NEW时，内层事务与外层事务就像两个独立的事务一样，一旦内层事务进行了提交后，外层事务不能对其进行回滚。两个事务互不影响。两个事务不是一个真正的嵌套事务。同时它需要JTA事务管理器的支持。</p>
+<p>使用PROPAGATION_NESTED时，外层事务的回滚可以引起内层事务的回滚。而内层事务的异常并不会导致外层事务的回滚，它是一个真正的嵌套事务。DataSourceTransactionManager使用savepoint支持PROPAGATION_NESTED时，需要JDBC 3.0以上驱动及1.4以上的JDK版本支持。其它的JTATrasactionManager实现可能有不同的支持方式。</p>
+<p>PROPAGATION_REQUIRES_NEW 启动一个新的, 不依赖于环境的 “内部” 事务. 这个事务将被完全 commited 或 rolled back 而不依赖于外部事务, 它拥有自己的隔离范围, 自己的锁, 等等. 当内部事务开始执行时, 外部事务将被挂起, 内务事务结束时, 外部事务将继续执行。</p>
+<p>另一方面, PROPAGATION_NESTED 开始一个 “嵌套的” 事务, 它是已经存在事务的一个真正的子事务. 潜套事务开始执行时, 它将取得一个 savepoint. 如果这个嵌套事务失败, 我们将回滚到此 savepoint. 潜套事务是外部事务的一部分, 只有外部事务结束后它才会被提交。</p>
+<p>由此可见, PROPAGATION_REQUIRES_NEW 和 PROPAGATION_NESTED 的最大区别在于, PROPAGATION_REQUIRES_NEW 完全是一个新的事务, 而 PROPAGATION_NESTED 则是外部事务的子事务, 如果外部事务 commit, 嵌套事务也会被 commit, 这个规则同样适用于 roll back.</p>
+<h3 id="数据隔离级别"><a href="#数据隔离级别" class="headerlink" title="数据隔离级别"></a>数据隔离级别</h3><p>但是除了传播级别，在读取数据库的过程中，如果两个事务并发执行，那么彼此之间的数据是如何影响的呢？</p>
+<p>这就需要了解一下事务的另一个特性：数据隔离级别</p>
+<p>数据隔离级别分为不同的四种：</p>
+<p>1、Serializable ：最严格的级别，事务串行执行，资源消耗最大；</p>
+<p>2、REPEATABLE READ ：保证了一个事务不会修改已经由另一个事务读取但未提交（回滚）的数据。避免了“脏读取”和“不可重复读取”的情况，但是带来了更多的性能损失。</p>
+<p>3、READ COMMITTED :大多数主流数据库的默认事务等级，保证了一个事务不会读到另一个并行事务已修改但未提交的数据，避免了“脏读取”。该级别适用于大多数系统。</p>
+<p>4、Read Uncommitted ：保证了读取过程中不会读取到非法数据。</p>
+<p>上面的解释其实每个定义都有一些拗口，其中涉及到几个术语：脏读、不可重复读、幻读。<br>这里解释一下：</p>
+<p>脏读 :所谓的脏读，其实就是读到了别的事务回滚前的脏数据。比如事务B执行过程中修改了数据X，在未提交前，事务A读取了X，而事务B却回滚了，这样事务A就形成了脏读。</p>
+<p>不可重复读 ：不可重复读字面含义已经很明了了，比如事务A首先读取了一条数据，然后执行逻辑的时候，事务B将这条数据改变了，然后事务A再次读取的时候，发现数据不匹配了，就是所谓的不可重复读了。</p>
+<p>幻读 ：小的时候数手指，第一次数十10个，第二次数是11个，怎么回事？产生幻觉了？<br>幻读也是这样子，事务A首先根据条件索引得到10条数据，然后事务B改变了数据库一条数据，导致也符合事务A当时的搜索条件，这样事务A再次搜索发现有11条数据了，就产生了幻读。</p>
+<p>一个对照关系表：</p>
+<pre><code>                      Dirty reads          non-repeatable reads     phantom reads
+Serializable             不会                       不会                   不会                      
+REPEATABLE READ          不会                       不会                   会                         
+READ COMMITTED           不会                        会                    会                            
+Read Uncommitted          会                         会                    会                             
+</code></pre><p>所以最安全的，是Serializable，但是伴随而来也是高昂的性能开销。<br>另外，事务常用的两个属性：readonly和timeout<br>一个是设置事务为只读以提升性能。<br>另一个是设置事务的超时时间，一般用于防止大事务的发生。还是那句话，事务要尽可能的小！</p>
+<h3 id="最后引入一个问题"><a href="#最后引入一个问题" class="headerlink" title="最后引入一个问题"></a>最后引入一个问题</h3><p>一个逻辑操作需要检查的条件有20条，能否为了减小事务而将检查性的内容放到事务之外呢？</p>
+<p>很多系统都是在DAO的内部开始启动事务，然后进行操作，最后提交或者回滚。这其中涉及到代码设计的问题。小一些的系统可以采用这种方式来做，但是在一些比较大的系统，<br>逻辑较为复杂的系统中，势必会将过多的业务逻辑嵌入到DAO中，导致DAO的复用性下降。所以这不是一个好的实践。</p>
+<p>来回答这个问题：能否为了缩小事务，而将一些业务逻辑检查放到事务外面？答案是：对于核心的业务检查逻辑，不能放到事务之外，而且必须要作为分布式下的并发控制！<br>一旦在事务之外做检查，那么势必会造成事务A已经检查过的数据被事务B所修改，导致事务A徒劳无功而且出现并发问题，直接导致业务控制失败。<br>所以，在分布式的高并发环境下，对于核心业务逻辑的检查，要采用加锁机制。<br>比如事务开启需要读取一条数据进行验证，然后逻辑操作中需要对这条数据进行修改，最后提交。<br>这样的一个过程，如果读取并验证的代码放到事务之外，那么读取的数据极有可能已经被其他的事务修改，当前事务一旦提交，又会重新覆盖掉其他事务的数据，导致数据异常。<br>所以在进入当前事务的时候，必须要将这条数据锁住，使用for update就是一个很好的在分布式环境下的控制手段。</p>
+<p>一种好的实践方式是使用编程式事务而非生命式，尤其是在较为规模的项目中。对于事务的配置，在代码量非常大的情况下，将是一种折磨，而且人肉的方式，绝对不能避免这种问题。<br>将DAO保持针对一张表的最基本操作，然后业务逻辑的处理放入manager和service中进行，同时使用编程式事务更精确的控制事务范围。</p>
+<p>特别注意的，对于事务内部一些可能抛出异常的情况，捕获要谨慎，不能随便的catch Exception 导致事务的异常被吃掉而不能正常回滚。</p>
+<h3 id="Spring配置声明式事务"><a href="#Spring配置声明式事务" class="headerlink" title="Spring配置声明式事务"></a>Spring配置声明式事务</h3><p>Spring配置声明式事务：</p>
+<ul>
+<li>配置DataSource</li>
+<li>配置事务管理器</li>
+<li>事务的传播特性</li>
+<li>那些类那些方法使用事务</li>
+</ul>
+<p>Spring配置文件中关于事务配置总是由三个组成部分，分别是DataSource、TransactionManager和代理机制这三部分，无论哪种配置方式，一般变化的只是代理机制这部分。</p>
+<pre><code>DataSource、TransactionManager这两部分只是会根据数据访问方式有所变化，
+</code></pre><p>比如使用Hibernate进行数据访问 时，DataSource实际为SessionFactory，TransactionManager的实现为 HibernateTransactionManage</p>
+<p>根据代理机制的不同，Spring事务的配置又有几种不同的方式：</p>
+<p>第一种方式：每个Bean都有一个代</p>
+<p>第二种方式：所有Bean共享一个代理基类</p>
+<p>第三种方式：使用拦截器</p>
+<p>第四种方式：使用tx标签配置的拦截器</p>
+<p>第五种方式：全注解</p>
 
       
     </div>
@@ -534,6 +691,8 @@
         <div class="post-tags">
           
             <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
           
         </div>
       
@@ -565,8 +724,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/25/First/" rel="next" title="First">
-                <i class="fa fa-chevron-left"></i> First
+              <a href="/2019/09/22/JAVA并发之各种锁/" rel="next" title="JAVA并发之各种锁">
+                <i class="fa fa-chevron-left"></i> JAVA并发之各种锁
               </a>
             
           </div>
@@ -574,10 +733,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/06/谈社团招新/" rel="prev" title="谈社团招新">
-                谈社团招新 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -759,7 +914,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、获取验证码图片"><span class="nav-number">1.</span> <span class="nav-text">一、获取验证码图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、模拟登陆"><span class="nav-number">2.</span> <span class="nav-text">二、模拟登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难点"><span class="nav-number">3.</span> <span class="nav-text">难点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring事务"><span class="nav-number">1.</span> <span class="nav-text">Spring事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">1.1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事务传播行为？"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是事务传播行为？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的7种传播级别"><span class="nav-number">1.1.2.</span> <span class="nav-text">事务的7种传播级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-REQUIRED"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">PROPAGATION_REQUIRED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-SUPPORTS"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">PROPAGATION_SUPPORTS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-MANDATORY"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">PROPAGATION_MANDATORY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-REQUIRES-NEW"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">PROPAGATION_REQUIRES_NEW</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-NOT-SUPPORTED"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">PROPAGATION_NOT_SUPPORTED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-NEVER"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">PROPAGATION_NEVER</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-NESTED"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">PROPAGATION_NESTED</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PROPAGATION-NESTED-与PROPAGATION-REQUIRES-NEW的区别"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">PROPAGATION_NESTED 与PROPAGATION_REQUIRES_NEW的区别:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据隔离级别"><span class="nav-number">1.1.3.</span> <span class="nav-text">数据隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后引入一个问题"><span class="nav-number">1.1.4.</span> <span class="nav-text">最后引入一个问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring配置声明式事务"><span class="nav-number">1.1.5.</span> <span class="nav-text">Spring配置声明式事务</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
